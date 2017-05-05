@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var toySchema = new Schema({
+var itemSchema = new Schema({
 	item:{
 		type: [String],
 		required:true
@@ -18,4 +18,4 @@ var toySchema = new Schema({
 
 });
 
-module.exports = mongoose.model("Toy", toySchema);
+module.exports = mongoose.model("Items", itemSchema);

@@ -15,7 +15,7 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use("/api", expressJwt({secret: config.secret}));
 
-app.use("/api/toy", require("./routes/toyRoutes"));  
+app.use("/api/items", require("./routes/itemRoutes"));  
 
 
 
@@ -23,7 +23,7 @@ app.use("/api/toy", require("./routes/toyRoutes"));
 app.use(express.static(path.join(__dirname, "public")));
 
 mongoose.connect(config.database); 
-//mongoose.connect("mongodb://localhost/toy", function(err){
+//mongoose.connect("mongodb://localhost/item-schema", function(err){
 //	if(err) throw err;
 //	console.log("Successfully connected to the database");
 //});
