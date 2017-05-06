@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var itemSchema = new Schema({
-	item:{
+	items:{
 		type: [String],
 		required:true
 	},
@@ -18,4 +18,5 @@ var itemSchema = new Schema({
 
 });
 
-module.exports = mongoose.model("Items", itemSchema);
+module.exports = mongoose.model("Item", itemSchema);
+
