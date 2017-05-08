@@ -1,4 +1,4 @@
-var app = angular.module("appMeDown.Auth", []);
+var app = angular.module("appMeDown.Auth", ["ngStorage"]);
 app.config(["$routeProvider", function ($routeProvider) {
 	
 	$routeProvider
@@ -14,25 +14,31 @@ app.config(["$routeProvider", function ($routeProvider) {
 		template: "",
 		controller: "LogoutController"
 	})
+        .when("/profile", {
+            templateUrl:"components/profile/profile.html",
+            controller: "profileController"
+        })
 }]);
 
-app.service("TokenService", [function () {  
-    var userToken = "token";
+app.service("TokenService", ["$localStorage", function ($localStorage) {
+
 
     this.setToken = function (token) {
-        localStorage[userToken] = token;
+        $localStorage.token = token;
     };
 
     this.getToken = function () {
-        return localStorage[userToken];
+        return $localStorage.token;
     };
 
     this.removeToken = function () {
-        localStorage.removeItem(userToken);
+        delete $localStorage.token;
     };
 }]);
 
-app.service("UserService", ["$http", "$location", "TokenService", function ($http, $location, TokenService) {  
+app.service("UserService", ["$http", "$location", "TokenService", "$localStorage", function ($http, $location, TokenService, $localStorage) {
+    this.currentUser = $localStorage.user || {};
+
     this.signup = function (user) {
         return $http.post("/auth/signup", user);
     };
@@ -40,13 +46,25 @@ app.service("UserService", ["$http", "$location", "TokenService", function ($htt
     this.login = function (user) {
         return $http.post("/auth/login", user).then(function (response) {
             TokenService.setToken(response.data.token);
+            $localStorage.user = response.data.user
             return response;
         });
     };
 
     this.logout = function () {
         TokenService.removeToken();
+        // delete $localStorage.user;
         $location.path("/");
+    };
+
+    this.changePassword = function (newPassword) {
+        console.log(newPassword);
+        return $http.post("/auth/change-password", {newPassword: newPassword}).then(function (response) {
+            alert("Password changed successfully!");
+            return response.data;
+        }, function (response) {
+            alert("Problem with the server.");
+        });
     };
 
     this.isAuthenticated = function () {

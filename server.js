@@ -15,7 +15,7 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use("/api", expressJwt({secret: config.secret}));
 
-app.use("/api/items", require("./routes/itemRoutes"));  
+app.use("/api/items", require("./routes/item-routes"));
 
 
 
@@ -23,12 +23,11 @@ app.use("/api/items", require("./routes/itemRoutes"));
 app.use(express.static(path.join(__dirname, "public")));
 
 mongoose.connect(config.database); 
-//mongoose.connect("mongodb://localhost/item-schema", function(err){
-//	if(err) throw err;
-//	console.log("Successfully connected to the database");
-//});
 
-app.use("/auth", require("./routes/authRoutes"));  
+
+app.use("/auth/change-password", expressJwt({secret: config.secret}));
+
+app.use("/auth", require("./routes/auth-routes"));
 
 
 app.listen(port,function(){
