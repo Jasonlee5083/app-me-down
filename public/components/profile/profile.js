@@ -19,14 +19,21 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "UserService
         $scope.message = "Show Form Button Clicked";
         console.log($scope.message);
         var modalInstance = $uibModal.open({
-            templateUrl: "profile-modal.html",
-            controller: "profileModalInstanceController",
+            templateUrl: "add-item-modal.html",
+            controller: "itemModalInstanceController",
             scope:$scope,
             resolve: {
                 itemForm: function () {
                     return $scope.itemForm;
                 }
             }
-        })
-    }
+        });
+
+        modalInstance.result.then(function (newItem) {
+            $scope.selected = newItem;
+        }, function () {
+            $log.info("Modal dismissed at: " + new Date());
+        });
+    };
+
 }]);
