@@ -19,12 +19,12 @@ itemRouter.route("/")
 		});
 	});
 
-itemRouter.route("/:itemId")
+itemRouter.route("/")
 	.get(function (req, res) {
 		//			item.find(function(err,items){
 		Item.findById(req.params.itemId, function (err, item) {
 			if (err) res.status(500).send(err);
-			if (!item) res.status(404).send("No item item found.");
+			if (!item) res.status(404).send("No itemfound.");
 			else res.send(item);
 		});
 	})

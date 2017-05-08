@@ -1,6 +1,6 @@
-var app = angular.module("appMeDown", ["ngRoute", "appMeDown.Auth"]);
+var app = angular.module("appMeDown", ["ngRoute", "appMeDown.Auth", "ngAnimate", "ngSanitize", "ui.bootstrap"]);
 
-app.controller("mainController", ("$scope", function ($scope) {
+app.controller("mainController", ["$scope", function ($scope) {
 	
 }]);
 
@@ -13,8 +13,9 @@ app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $lo
         })
         .when("/items", {
             templateUrl: "components/items/items.html",
-            controller: "ItemController"
+            controller: "itemController"
         })
+
 		.otherwise({
 		redirectTo:"/home"
 	})

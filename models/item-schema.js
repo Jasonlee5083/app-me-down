@@ -2,28 +2,23 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var itemSchema = new Schema({
-	items:{
 		type: String,
 		ageRange:String,
 		title:String,
 		photo:[],
-		descriptions:String,
+		description:String,
 		condition:String,
 		location:String,
 		email:String,
-		
-	},
-	
-	
-	donation: {
+		donation: {
 		type: Boolean,
-		required: true
-	},
-    user: {
+		default: true
+		},
+    	user: {
         type: Schema.Types.ObjectId,
         ref: "User",
 		required: true	
-	}
+		}
 
 });
 
