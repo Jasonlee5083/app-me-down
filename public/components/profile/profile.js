@@ -3,7 +3,7 @@
  */
 var app = angular.module("appMeDown");
 
-app.controller("profileController", ["$scope", "UserService", function ($scope, UserService) {
+app.controller("profileController", ["$scope", "$uibModal", "$log", "UserService", function ($scope, $uibModal, $log, UserService) {
     $scope.userService = UserService;
     $scope.changePassword = function (passwords) {
         if (passwords.newPassword === passwords.newPasswordRepeat) {
@@ -13,5 +13,20 @@ app.controller("profileController", ["$scope", "UserService", function ($scope, 
         } else {
             alert("The two passwords didn't match");
         }
+    }
+
+    $scope.showForm = function () {
+        $scope.message = "Show Form Button Clicked";
+        console.log($scope.message);
+        var modalInstance = $uibModal.open({
+            templateUrl: "profile-modal.html",
+            controller: "profileModalInstanceController",
+            scope:$scope,
+            resolve: {
+                itemForm: function () {
+                    return $scope.itemForm;
+                }
+            }
+        })
     }
 }]);
