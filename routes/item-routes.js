@@ -19,7 +19,7 @@ itemRouter.route("/")
 		});
 	});
 
-itemRouter.route("/:itemId")
+itemRouter.route("/")
 	.get(function (req, res) {
 		//			item.find(function(err,items){
 		Item.findById(req.params.itemId, function (err, item) {

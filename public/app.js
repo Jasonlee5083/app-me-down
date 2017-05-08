@@ -2,7 +2,7 @@ var app = angular.module("appMeDown", ["ngRoute", "appMeDown.Auth"]);
 
 app.controller("mainController", ("$scope", function ($scope) {
 	
-}]);
+}));
 
 app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('');
@@ -13,7 +13,7 @@ app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $lo
         })
         .when("/items", {
             templateUrl: "components/items/items.html",
-            controller: "ItemController"
+            controller: "itemController"
         })
 		.otherwise({
 		redirectTo:"/home"

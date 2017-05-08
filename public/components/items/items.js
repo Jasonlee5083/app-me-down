@@ -1,7 +1,7 @@
 var app = angular.module("appMeDown");
 
-app.service("ItemService", ["$http", function ($http) {
-    this.getItems = function () {
+app.service("itemService", ["$http", function ($http) {
+    this.getitems = function () {
         return $http.get("/api/items").then(function (response) {
             return response.data;
         }, function (response) {
@@ -9,20 +9,20 @@ app.service("ItemService", ["$http", function ($http) {
         });
     };
 	
-	this.postItems = function(newitem) {
+	this.postitems = function(newitem) {
 		return $http.post("/api/items",newitem).then(function(response){
 			return response.data;
 		})
 		
 	}
 	
-	this.removeItems = function(id) {
+	this.removeitems = function(id) {
 		return $http.delete("/api/items" + id).then(function(response){
 			return "you item has been deleted"
 		})
 	}
 
-    this.saveItems = function (todo) {
+    this.saveitems = function (item) {
         return $http.post("/api/items", newitem).then(function (response) {
             return response.data;
         }, function (response) {
@@ -31,30 +31,30 @@ app.service("ItemService", ["$http", function ($http) {
     };
 }]);
 
-app.controller("ItemController", ["$scope", "$http", "ItemService", function ($scope, $http, ItemService) {
+app.controller("itemController", ["$scope", "$http", "itemService", function ($scope, $http, itemService) {
  
     $scope.items = [];
 	
-			ItemService.getItems().then(function (response) {
+			itemService.getitems().then(function (response) {
 			$scope.items = response;
 			console.log(response);
 		})
 		
 
 	$scope.submit = function (input) {
-		ItemService.postItems(input).then(function (data) {
+		itemService.postitems(input).then(function (data) {
 			$scope.items.push(data);
 		})
 	}
 
 	$scope.remove = function (index, id) {
-		ItemService.removeItems(id).then(function (response) {
+		itemService.removeitems(id).then(function (response) {
 			$scope.items.splice(index, 1);
 		})
 	}
 
 	$scope.save = function (newitem) {
-		ItemService.saveItems(newitem);
+		itemService.saveitems(newitem);
 	}
 
 }]);
