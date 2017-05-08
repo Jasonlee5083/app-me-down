@@ -3,12 +3,21 @@ var Schema = mongoose.Schema;
 
 var itemSchema = new Schema({
 	items:{
-		type: [String],
-		required:true
+		type: String,
+		ageRange:String,
+		title:String,
+		photo:[],
+		descriptions:String,
+		condition:String,
+		location:String,
+		email:String,
+		
 	},
+	
+	
 	donation: {
 		type: Boolean,
-		required: true,
+		required: true
 	},
     user: {
         type: Schema.Types.ObjectId,
