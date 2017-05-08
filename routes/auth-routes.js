@@ -40,4 +40,18 @@ authRoutes.post("/signup", function (req, res) {
     })
 });
 
+authRoutes.post("/change-password", function (req, res) {
+    console.log(req);
+    User.findById(req.user._id, function (err, user) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            user.password = req.body.newPassword || user.password;
+            user.save(function (err, user) {
+                res.send({success: true, user: user.withoutPassword()});
+            });
+        }
+    });
+});
+
 module.exports = authRoutes;  
