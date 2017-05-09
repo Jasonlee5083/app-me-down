@@ -24,7 +24,7 @@ itemRouter.route("/:itemId")
 		//			item.find(function(err,items){
 		Item.findById(req.params.itemId, function (err, item) {
 			if (err) res.status(500).send(err);
-			if (!item) res.status(404).send("No itemfound.");
+			if (!item) res.status(404).send("No item found.");
 			else res.send(item);
 		});
 	})

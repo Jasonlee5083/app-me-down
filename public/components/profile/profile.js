@@ -15,18 +15,5 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "UserService
         }
     }
 
-    $scope.showForm = function () {
-        $scope.message = "Show Form Button Clicked";
-        console.log($scope.message);
-        var modalInstance = $uibModal.open({
-            templateUrl: "profile-modal.html",
-            controller: "profileModalInstanceController",
-            scope:$scope,
-            resolve: {
-                itemForm: function () {
-                    return $scope.itemForm;
-                }
-            }
-        })
-    }
+
 }]);

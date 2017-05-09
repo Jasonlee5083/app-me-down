@@ -9,8 +9,8 @@ app.service("itemService", ["$http", function ($http) {
         });
     };
 
-    this.postItems = function(newitem) {
-        return $http.post("/api/items",newitem).then(function(response){
+    this.postItems = function(newItem) {
+        return $http.post("/api/items/",newItem).then(function(response){
             return response.data;
         })
 
