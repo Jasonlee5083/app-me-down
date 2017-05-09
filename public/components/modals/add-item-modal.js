@@ -12,25 +12,27 @@ app.directive("postModal", [function () {
 
 app.controller("itemModalInstanceController", ["$scope", "$uibModalInstance", "itemService", function ($scope, $uibModalInstance, itemService) {
     $scope.form = {};
-    $scope.items = [];
 
     $scope.submit = function (newItem) {
-        itemService.postItems(newItem).then(function () {
-            $scope.items.push(newItem);
-            console.log($scope.items);
-        })
-    }
-
-    $scope.submitForm = function () {
-        if($scope.form.itemForm.$valid) {
-            console.log("user form is in scope");
-            $uibModalInstance.close('closed');
-        } else {
-            console.log("user form is not in scope");
-        }
+        $uibModalInstance.close(newItem);
     };
+    // $scope.submit = function (newItem) {
+    //     itemService.postItems(newItem).then(function () {
+    //         $uibModalInstance.close(newItem);
+    //         // $scope.items.push(newItem);
+    //         // console.log($scope.items);
+    //     })
+    // };
+
+    // $scope.submitForm = function () {
+    //     if($scope.form.itemForm.$valid) {
+    //         console.log("user form is in scope");
+    //     } else {
+    //         console.log("user form is not in scope");
+    //     }
+    // };
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('closed');
     };
-}])
+}]);
