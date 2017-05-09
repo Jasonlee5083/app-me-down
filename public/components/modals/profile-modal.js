@@ -6,7 +6,7 @@ var app = angular.module("appMeDown");
 app.directive("postModal", [function () {
     return {
         restrict: "E",
-        templateUrl: "components/modals/profile-modal.html"
+        templateUrl: "components/modals/add-item-modal.html"
     };
 }]);
 
