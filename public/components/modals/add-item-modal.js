@@ -10,8 +10,16 @@ app.directive("postModal", [function () {
     };
 }]);
 
-app.controller("profileModalInstanceController", ["$scope", "$uibModalInstance", function ($scope, $uibModalInstance) {
+app.controller("itemModalInstanceController", ["$scope", "$uibModalInstance", "itemService", function ($scope, $uibModalInstance, itemService) {
     $scope.form = {};
+    $scope.items = [];
+
+    $scope.submit = function (newItem) {
+        itemService.postItems(newItem).then(function () {
+            $scope.items.push(newItem);
+            console.log($scope.items);
+        })
+    }
 
     $scope.submitForm = function () {
         if($scope.form.itemForm.$valid) {

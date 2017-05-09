@@ -14,10 +14,50 @@
                     </div>
                     <div class="form-group">
                         <label for="newPasswordRepeat">Repeat New Password</label>
-                        <input type="password" id="newPasswordRepeat" class="form-control" ng-model="passwords.newPasswordRepeat">
+                        <input type="password" id="newPasswordRepeat" class="form-control"
+                               ng-model="passwords.newPasswordRepeat">
                     </div>
                     <button class="btn btn-primary" ng-click="changePassword(passwords)">Change Password</button>
                 </form>
             </div>
         </div>
     </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <hr>
+        <h1>Posts:</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row cards" ng-repeat="item in currentUserItems">
+        <div class="card card-outline-info mb-3">
+            <div class="card-deck">
+                <div class="card-block">
+                    {{item.photo}}
+                    <h4 class="card-title">{{item.title}}</h4>
+                    <p class="card-text">{{item.description}}</p>
+                    <p class="card-text">
+                        <small class="text muted">{{item.condition}}</small>
+                    </p>
+                    <h6 class="card-text">{{item.location}}</h6>
+                    <p class="card-text">{{item.email}}</p>
+                    <button class="btn btn-sm btn-warning" ng-click="delete($index, item._id)">Delete</button>
+                    <button class="btn btn-sm btn-primary" ng-click="editBox = !editBox">Edit</button>
+                </div>
+            </div>
+        </div>
+        <div ng-show="editBox">
+            <form>
+                <input ng-model="item.type">
+                <input ng-model="item.ageRange">
+                <input ng-model="item.title">
+                <input ng-model="item.photo">
+                <input ng-model="item.description">
+                <input ng-model="item.condition">
+                <button ng-click="edit($index, item); editBox = !editBox">Edit</button>
+            </form>
+        </div>
+    </div>
+</div>

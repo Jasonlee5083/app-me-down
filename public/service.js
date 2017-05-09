@@ -9,21 +9,21 @@ app.service("itemService", ["$http", function ($http) {
         });
     };
 
-    this.postItems = function(newitem) {
-        return $http.post("/api/items",newitem).then(function(response){
+    this.postItems = function(newItem) {
+        return $http.post("/api/items/",newItem).then(function(response){
             return response.data;
         })
 
     }
 
     this.removeItems = function(id) {
-        return $http.delete("/api/items" + id).then(function(response){
+        return $http.delete("/api/items/" + id).then(function(response){
             return "you item has been deleted"
         })
     }
 
-    this.saveItems = function (todo) {
-        return $http.post("/api/items", newitem).then(function (response) {
+    this.editItems = function (item) {
+        return $http.put("/api/items/" + item._id, item).then(function (response) {
             return response.data;
         }, function (response) {
             alert("Error " + response.status + ": " + response.statusText);

@@ -3,7 +3,10 @@
  */
 var app = angular.module("appMeDown");
 
-app.controller("profileController", ["$scope", "$uibModal", "$log", "UserService", function ($scope, $uibModal, $log, UserService) {
+app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStorage", "UserService", "itemService", function ($scope, $uibModal, $log, $localStorage, UserService, itemService) {
+    $scope.currentUserItems = [];
+    $scope.allItems = [];
+
     $scope.userService = UserService;
     $scope.changePassword = function (passwords) {
         if (passwords.newPassword === passwords.newPasswordRepeat) {
@@ -15,18 +18,34 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "UserService
         }
     }
 
-    $scope.showForm = function () {
-        $scope.message = "Show Form Button Clicked";
-        console.log($scope.message);
-        var modalInstance = $uibModal.open({
-            templateUrl: "profile-modal.html",
-            controller: "profileModalInstanceController",
-            scope:$scope,
-            resolve: {
-                itemForm: function () {
-                    return $scope.itemForm;
-                }
+    itemService.getItems().then(function (response) {
+
+        $scope.currentUser = $localStorage.user;
+
+        console.log($scope.currentUser._id);
+        $scope.allItems = response;
+        for(var i = 0; i < $scope.allItems.length; i++) {
+            if($scope.allItems[i].user === $scope.currentUser._id) {
+                $scope.currentUserItems.push($scope.allItems[i]);
             }
+        }
+        return $scope.currentUserItems;
+    })
+
+    $scope.delete = function (index, id) {
+        itemService.removeItems(id).then(function () {
+            $scope.currentUserItems.splice($scope.currentUserItems.indexOf(index, 1));
         })
     }
+
+    $scope.edit = function (index, item) {
+        itemService.editItems(item).then(function (response) {
+            console.log(item);
+            $scope.allItems = response;
+
+        })
+
+
+    }
+
 }]);
