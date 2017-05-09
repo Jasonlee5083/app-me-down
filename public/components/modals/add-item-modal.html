@@ -6,25 +6,20 @@
         <h2 class="modal-title">Post New Item</h2>
     </div>
 
-    <form name="form.itemForm" ng-submit="submitForm()" novalidate>
+    <form name="form.itemForm" novalidate>
         <div class="modal-body">
             <div class="form-group">
                 <label>Type:</label>
-                <div class="dropdown">
-                    <button type="button" class="form-control btn btn-secondary dropdown-toggle" id="dropdownType"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            ng-model="newItem.type"></button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownType">
-                        <a class="dropdown-item">Book</a>
-                        <a class="dropdown-item">Movie</a>
-                        <a class="dropdown-item">Toys & Games</a>
-                        <a class="dropdown-item">Clothes</a>
-                        <a class="dropdown-item">Furniture</a>
-                        <a class="dropdown-item">Feeding</a>
-                        <a class="dropdown-item">Health & Safety</a>
-                        <a class="dropdown-item">Other</a>
-                    </div>
-                </div>
+                <select class="form-control" ng-model="newItem.type">
+                        <option class="dropdown-item">Book</option>
+                        <option class="dropdown-item">Movie</option>
+                        <option class="dropdown-item">Toys & Games</option>
+                        <option class="dropdown-item">Clothes</option>
+                        <option class="dropdown-item">Furniture</option>
+                        <option class="dropdown-item">Feeding</option>
+                        <option class="dropdown-item">Health & Safety</option>
+                        <option class="dropdown-item">Other</option>
+                </select>
             </div>
 
             <div class="form-group">
