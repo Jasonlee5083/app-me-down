@@ -9,6 +9,14 @@ app.service("itemService", ["$http", function ($http) {
         });
     };
 
+    this.getUsersItems = function () {
+        return $http.get("/api/items?user=currentUser").then(function (response) {
+            return response.data;
+        }, function (response) {
+            alert("Error " + response.status + ": " + response.statusText);
+        });
+    };
+
     this.postItems = function(newItem) {
         return $http.post("/api/items/",newItem).then(function(response){
             return response.data;

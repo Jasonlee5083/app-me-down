@@ -4,8 +4,8 @@
 var app = angular.module("appMeDown");
 
 app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStorage", "UserService", "itemService", function ($scope, $uibModal, $log, $localStorage, UserService, itemService) {
-    $scope.currentUserItems = [];
-    $scope.allItems = [];
+    $scope.items = [];
+
 
     $scope.userService = UserService;
     $scope.changePassword = function (passwords) {
@@ -18,23 +18,13 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
         }
     }
 
-    itemService.getItems().then(function (response) {
-
-        $scope.currentUser = $localStorage.user;
-
-        console.log($scope.currentUser._id);
-        $scope.allItems = response;
-        for(var i = 0; i < $scope.allItems.length; i++) {
-            if($scope.allItems[i].user === $scope.currentUser._id) {
-                $scope.currentUserItems.push($scope.allItems[i]);
-            }
-        }
-        return $scope.currentUserItems;
+    itemService.getUsersItems().then(function (items) {
+        $scope.items = items;
     })
 
     $scope.delete = function (index, id) {
         itemService.removeItems(id).then(function () {
-            $scope.currentUserItems.splice($scope.currentUserItems.indexOf(index, 1));
+            $scope.items.splice($scope.items.indexOf(index), 1);
         })
     }
 
