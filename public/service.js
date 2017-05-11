@@ -1,5 +1,6 @@
 var app = angular.module("appMeDown");
 
+
 app.service("itemService", ["$http", "mapService", function ($http, mapService) {
 	this.getItems = function () {
 		return $http.get("/api/items").then(function (response) {
@@ -61,5 +62,7 @@ app.service("mapService", function ($http) {
 })
 
 /**
+
+
  * Created by sim_one_n_only on 5/8/17.
  */
