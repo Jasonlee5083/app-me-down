@@ -1,5 +1,6 @@
 <div class="container-fluid">
-    <button ng-click="showForm()">Add post</button>
+
+    <button class="btn btn-outline-info btn-lg" ng-click="showForm()">Add post</button>
     <div class="card" style="width: 20rem;">
         <div class="card-block">
             <h4 class="card-title">Categories</h4>
@@ -20,20 +21,37 @@
 </div>
 
 <div class="container">
-<div class="row cards" ng-repeat="item in items | filter: post">
-    <div class="card card-outline-info mb-3">
-        <div class="card-deck">
-            <div class="card-block">
-                {{item.photo}}
-                <h4 class="card-title">{{item.title}}</h4>
-                <p class="card-text">{{item.description}}</p>
-                <p class="card-text">
-                    <small class="text muted">{{item.condition}}</small>
-                </p>
-                <h6 class="card-text">{{item.location}}</h6>
-                <p class="card-text">{{item.email}}</p>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+	<div class="row cards" ng-repeat="item in items | filter: post">
+		<br>
+		<div class="card card-outline-info mb-3">
+			<div class="card-deck">
+				<div class="card-block">
+					{{item.photo}}
+					<h4 class="card-title">{{item.title}}</h4>
+					<p class="card-text">{{item.description}}</p>
+					<p class="card-text">
+						<small class="text muted">{{item.condition}}</small>
+					</p>
+					<h6 class="card-text">{{item.place.name}}</h6>
+					<p class="card-text">{{item.email}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="map col-sm-offset-3 col-sm-6">
+				<ui-gmap-google-map center="item.map.center" options="item.options" zoom="item.map.zoom" aria-label="Google map">
+					<ui-gmap-marker fit=true coords="item.marker.coords" idkey="item.marker.id">
+						<ui-gmap-window>
+							<div>{{item.marker.window.title}}</div>
+						</ui-gmap-window>
+					</ui-gmap-marker>
+				</ui-gmap-google-map>
+				<br>
+			</div>
+		</div>
+		<!--
+	<button class="btn mapButton col-sm-offset-5 col-sm-2" ng-click="createEvent(newItem);clicking=!clicking">map</button>
+	</div>
+-->
+
+	</div>
