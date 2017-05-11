@@ -1,71 +1,50 @@
 var app = angular.module("appMeDown");
 
-<<<<<<< HEAD
-app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "$location", "itemService", function ($scope, $log, $http, $uibModal, $location, itemService) {
-
-    $scope.items = [];
-    // $scope.favoriteItems = [];
-    //
-    // $scope.favorite = function (item) {
-    //     itemService.getFavorites(item).then(function (response) {
-    //         console.log(response);
-    //         $scope.favorite = item;
-    //
-    //     })
-    // };
-
-
-    itemService.getItems().then(function (response) {
-        // console.log(response);
-        return $scope.items = response;
-    });
-=======
 app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemService", "mapService", function ($scope, $log, $http, $uibModal, itemService, mapService) {
-	//	$scope.markers = [];
-	//	$scope.items = [];
+    //	$scope.markers = [];
+    //	$scope.items = [];
 
-	//	var config = {
-	//		center: {
-	//			latitude: 39.8282,
-	//			longitude: -98.5795
-	//		},
-	//		zoom: 4
-	//	};
+    //	var config = {
+    //		center: {
+    //			latitude: 39.8282,
+    //			longitude: -98.5795
+    //		},
+    //		zoom: 4
+    //	};
 
-	// default map view
-	//	createMap(config);
+    // default map view
+    //	createMap(config);
 
-	//	$scope.form = {};
-	//	$scope.markers = [];
-	//	$scope.items = [];
+    //	$scope.form = {};
+    //	$scope.markers = [];
+    //	$scope.items = [];
 
-	itemService.getItems().then(function (items) {
-		items.forEach(function (item) {
-			item.map = {
-				center: {
-					latitude: item.place.lat,
-					longitude: item.place.lng
-				},
-				zoom: 14
-			};
-			item.options = {
-				maxZoom: 14
-			};
-			item.marker = {
-				id: item._id,
-				coords: {
-					latitude: item.place.lat,
-					longitude: item.place.lng
-				},
-				window: {
-					title: item.place.name
-				}
-			}
-		});
-		console.log(items);
-		$scope.items = items;
-	});
->>>>>>> master
+    itemService.getItems().then(function (items) {
+        items.forEach(function (item) {
+            item.map = {
+                center: {
+                    latitude: item.place.lat,
+                    longitude: item.place.lng
+                },
+                zoom: 14
+            };
+            item.options = {
+                maxZoom: 14
+            };
+            item.marker = {
+                id: item._id,
+                coords: {
+                    latitude: item.place.lat,
+                    longitude: item.place.lng
+                },
+                window: {
+                    title: item.place.name
+                }
+            }
+        });
+        console.log(items);
+        $scope.items = items;
+    });
 
 
     $scope.submit = function (newItem) {
@@ -81,78 +60,78 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
         });
     };
 
-	$scope.save = function (newItem) {
-		itemService.saveItems(newItem);
-	};
-	$scope.showForm = function () {
-		$scope.message = "Show Form Button Clicked";
-		console.log($scope.message);
-		var modalInstance = $uibModal.open({
-			templateUrl: "add-item-modal.html",
-			controller: "itemModalInstanceController",
-			scope: $scope,
-			resolve: {
-				itemForm: function () {
-					return $scope.itemForm;
-				}
-			}
-		});
+    $scope.save = function (newItem) {
+        itemService.saveItems(newItem);
+    };
+    $scope.showForm = function () {
+        $scope.message = "Show Form Button Clicked";
+        console.log($scope.message);
+        var modalInstance = $uibModal.open({
+            templateUrl: "add-item-modal.html",
+            controller: "itemModalInstanceController",
+            scope: $scope,
+            resolve: {
+                itemForm: function () {
+                    return $scope.itemForm;
+                }
+            }
+        });
 
-		modalInstance.result
-			.then(function (newItem) {
-				return itemService.postItems(newItem)
-			})
-			.then(function (newItem) {
-				newItem.map = {
-					center: {
-						latitude: newItem.place.lat,
-						longitude: newItem.place.lng
-					},
-					zoom: 14
-				};
-				newItem.options = {
+        modalInstance.result
+            .then(function (newItem) {
+                return itemService.postItems(newItem)
+            })
+            .then(function (newItem) {
+                newItem.map = {
+                    center: {
+                        latitude: newItem.place.lat,
+                        longitude: newItem.place.lng
+                    },
+                    zoom: 14
+                };
+                newItem.options = {
                     maxZoom: 14
                 };
 
-				newItem.marker = {
-					id: newItem._id,
-					coords: {
-						latitude: newItem.place.lat,
-						longitude: newItem.place.lng
-					},
-					window: {
-						title: newItem.place.name
-					}
-				}
-				console.log(newItem);
-				$scope.items.push(newItem);
-				// Create the google map
-				//				createMap(config);
+                newItem.marker = {
+                    id: newItem._id,
+                    coords: {
+                        latitude: newItem.place.lat,
+                        longitude: newItem.place.lng
+                    },
+                    window: {
+                        title: newItem.place.name
+                    }
+                }
+                console.log(newItem);
+                $scope.items.push(newItem);
+                // Create the google map
+                //				createMap(config);
 
-				// Place markers on the map
-				//				setMarkers(newItem.place);
-			})
-	};
+                // Place markers on the map
+                //				setMarkers(newItem.place);
+            })
+    };
 
-	//	function createMap(config) {
-	//		$scope.map = config;
-	//	};
-	//
-	//	$scope.markers = [];
-	//
-	//	function setMarkers(newItemPlace) {
-	//		$scope.markers.push({
-	//			id: $scope.markers.length + 1,
-	//			coords: {
-	//				latitude: newItemPlace.lat,
-	//				longitude: newItemPlace.lng
-	//			},
-	//			window: {
-	//				title: newItemPlace.name
-	//			}
-	//		});
-	//		console.log($scope.markers);
-	//	};
+    //	function createMap(config) {
+    //		$scope.map = config;
+    //	};
+    //
+    //	$scope.markers = [];
+    //
+    //	function setMarkers(newItemPlace) {
+    //		$scope.markers.push({
+    //			id: $scope.markers.length + 1,
+    //			coords: {
+    //				latitude: newItemPlace.lat,
+    //				longitude: newItemPlace.lng
+    //			},
+    //			window: {
+    //				title: newItemPlace.name
+    //			}
+    //		});
+    //		console.log($scope.markers);
+    //	};
 }]);
 
 //			$scope.createEvent = function (item) {

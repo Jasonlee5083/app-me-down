@@ -38,6 +38,23 @@ app.service("itemService", ["$http", "mapService", function ($http, mapService) 
 	this.mapService = function (item) {
 
 	}
+
+    this.getUsersItems = function () {
+        return $http.get("/api/items?user=currentUser").then(function (response) {
+            return response.data;
+        }, function (response) {
+            alert("Error " + response.status + ": " + response.statusText);
+        });
+    };
+
+    this.getFavorites = function () {
+        return $http.get("/api/items?favorite=true").then(function (response) {
+            console.log(response.data);
+            return response.data;
+        }, function (response) {
+            alert("Error " + response.status + ": " + response.statusText);
+        });
+    };
 }]);
 
 // Google Map API
