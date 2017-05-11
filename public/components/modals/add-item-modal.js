@@ -7,11 +7,11 @@ app.directive("postModal", [function () {
 	};
 }]);
 
-app.controller("itemModalInstanceController", ["$scope", "$uibModalInstance", "itemService", "mapservice", function ($scope, $uibModalInstance, itemService, mapservice) {
+app.controller("itemModalInstanceController", ["$scope", "$uibModalInstance", "itemService", "mapService", function ($scope, $uibModalInstance, itemService, mapService) {
 	
-	$scope.form = {};
-	$scope.markers = [];
-	$scope.items = [];
+//	$scope.form = {};
+//	$scope.markers = [];
+//	$scope.items = [];
 
 	$scope.submit = function (newItem) {
 		$uibModalInstance.close(newItem);
@@ -31,7 +31,7 @@ app.controller("itemModalInstanceController", ["$scope", "$uibModalInstance", "i
 
 //var app = angular.module("appMeDown");
 //
-//app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemService", function ($scope, $log, $http, $uibModal, itemService, mapservice) {
+//app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemService", function ($scope, $log, $http, $uibModal, itemService, mapService) {
 //
 //	//	$scope.items = [];
 //	//
@@ -107,7 +107,7 @@ app.controller("itemModalInstanceController", ["$scope", "$uibModalInstance", "i
 //
 //
 //	modalInstance.result.then(function (newItem) {
-//		return mapservice.getMapinfo(newItem.place.name).then(function (mapData) {
+//		return mapService.getMapinfo(newItem.place.name).then(function (mapData) {
 //				newItem.place.lat = mapData.results[0].geometry.location.lat;
 //				newItem.place.lng = mapData.results[0].geometry.location.lng;
 //				setMarkers(mapData.results[0]);
@@ -187,7 +187,7 @@ app.controller("itemModalInstanceController", ["$scope", "$uibModalInstance", "i
 //
 //	//			$scope.createEvent = function (item) {
 //	//				console.log($scope.items);
-//	//				mapservice.getMapinfo(item.location.name).then(function (mapData) {
+//	//				mapService.getMapinfo(item.location.name).then(function (mapData) {
 //	//						item.location.lat = mapData.results[0].geometry.location.lat;
 //	//						item.location.lng = mapData.results[0].geometry.location.lng;
 //	//						setMarkers(mapData.results[0]);
