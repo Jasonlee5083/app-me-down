@@ -28,6 +28,34 @@ app.service("itemService", ["$http", function ($http) {
             alert("Error " + response.status + ": " + response.statusText);
         });
     };
-}]);/**
+	this.mapService = function (item) {
+		
+	}
+}]);
+
+// Google Map API
+
+app.service("mapservice",function($http) {
+	
+	var config = {
+		headers:{
+	'X-Mashape-Key':'dfnU4hYGHxmshVKRvFYPvQND3Cfdp1sXuUpjsnhzljyW6zmpc0'	
+		}
+
+		
+	};
+	
+	this.getMapinfo = function(mapdata) {
+		var url = 'https://michele-zonca-google-geocoding.p.mashape.com/geocode/json?address=' + mapdata;
+		return $http.get(url,config).then(function(response){
+//			console.log(response.data);
+			return response.data;			
+		});
+	}
+	
+	
+})
+
+/**
  * Created by sim_one_n_only on 5/8/17.
  */
