@@ -23,40 +23,87 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <hr>
-        <h1>Posts:</h1>
-    </div>
-</div>
 <div class="container">
-    <div class="row cards" ng-repeat="item in items">
-        <div class="card card-outline-info mb-3">
-            <div class="card-deck">
-                <div class="card-block">
-                    {{item.photo}}
-                    <h4 class="card-title">{{item.title}}</h4>
-                    <p class="card-text">{{item.description}}</p>
-                    <p class="card-text">
-                        <small class="text muted">{{item.condition}}</small>
-                    </p>
-                    <h6 class="card-text">{{item.location}}</h6>
-                    <p class="card-text">{{item.email}}</p>
-                    <button class="btn btn-sm btn-warning" ng-click="delete($index, item._id)">Delete</button>
-                    <button class="btn btn-sm btn-primary" ng-click="editBox = !editBox">Edit</button>
+    <hr>
+    <uib-tabset active="active">
+        <uib-tab index="0" heading="Posts">
+            <div class="row cards" ng-repeat="item in items">
+                <div class="card card-outline-info mb-3">
+                    <div class="card-deck">
+                        <div class="card-block">
+                            {{item.photo}}
+                            <h4 class="card-title">{{item.title}}</h4>
+                            <p class="card-text">{{item.description}}</p>
+                            <p class="card-text">
+                                <small class="text muted">{{item.condition}}</small>
+                            </p>
+                            <h6 class="card-text">{{item.location}}</h6>
+                            <p class="card-text">{{item.email}}</p>
+                            <button class="btn btn-sm btn-warning" ng-click="delete($index, item._id)">Delete</button>
+                            <button class="btn btn-sm btn-primary" ng-click="editBox = !editBox">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="editBox">
+                    <form>
+                        <input ng-model="item.type">
+                        <input ng-model="item.ageRange">
+                        <input ng-model="item.title">
+                        <input ng-model="item.photo">
+                        <input ng-model="item.description">
+                        <input ng-model="item.condition">
+                        <button ng-click="edit($index, item); editBox = !editBox">Edit</button>
+                    </form>
                 </div>
             </div>
-        </div>
-        <div ng-show="editBox">
-            <form>
-                <input ng-model="item.type">
-                <input ng-model="item.ageRange">
-                <input ng-model="item.title">
-                <input ng-model="item.photo">
-                <input ng-model="item.description">
-                <input ng-model="item.condition">
-                <button ng-click="edit($index, item); editBox = !editBox">Edit</button>
-            </form>
-        </div>
-    </div>
+        </uib-tab>
+        <uib-tab index="1" heading="Favorites">
+            <div class="card" ng-repeat="item in favorites">
+                <div class="item item-text-wrap">
+                    {{item.photo}}
+                    <h3>{{ item.title}}</h3>
+                    <p>{{ item.description }}</p>
+                    <button class="btn btn-sm btn-warning" ng-click="delete($index, item._id)">Delete</button>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="2" heading="Contact Me">
+            <div flex layout="row" layout-align="center center">
+                <div flex layout="row" layout-align="center center">
+                    <div flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" class="md-whiteframe-z2">
+                        <md-content class="md-padding">
+                            <div flex-sm="100" flex-gt-sm="80" layout-sm="column">
+                                <form name="contactForm" data-ng-submit="sendMail()">
+                                    <md-input-container>
+                                        <label>Name:</label>
+                                        <input ng-model="contactName" required>
+                                    </md-input-container>
+                                    <md-input-container flex>
+                                        <label>Email:</label>
+                                        <input type="email" ng-model="contactEmail" required>
+                                    </md-input-container>
+                                    <br>
+
+                                    <md-input-container>
+                                        <label>Message:</label>
+                                        <textarea ng-model="mail.message" columns="10" md-maxlength="150"
+                                                  required></textarea>
+                                    </md-input-container>
+                                    <br>
+
+                                    <md-button type="submit" class="md-primary"
+                                               ng-class="{'md-raised md-hue-1': (contactForm.$dirty && contactForm.$valid) }"
+                                               aria-label="Save Project" ng-click="send(email);">Send
+                                    </md-button>
+                                </form>
+                            </div>
+                        </md-content>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+    </uib-tabset>
 </div>
+
+
+

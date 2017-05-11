@@ -1,4 +1,4 @@
-var app = angular.module("appMeDown", ["ngRoute", "appMeDown.Auth", "ngAnimate", "ngSanitize", "ui.bootstrap"]);
+var app = angular.module("appMeDown", ["ngRoute", "appMeDown.Auth", "ngAnimate", "ngSanitize", "ui.bootstrap", "ngMaterial", "ngAria"]);
 
 app.controller("mainController", ["$scope", function ($scope) {
 

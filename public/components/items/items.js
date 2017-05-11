@@ -1,31 +1,41 @@
 var app = angular.module("appMeDown");
 
-app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemService", function ($scope, $log, $http, $uibModal, itemService) {
+app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "$location", "itemService", function ($scope, $log, $http, $uibModal, $location, itemService) {
 
-	$scope.items = [];
+    $scope.items = [];
+    // $scope.favoriteItems = [];
+    //
+    // $scope.favorite = function (item) {
+    //     itemService.getFavorites(item).then(function (response) {
+    //         console.log(response);
+    //         $scope.favorite = item;
+    //
+    //     })
+    // };
 
-	itemService.getItems().then(function (response) {
+
+    itemService.getItems().then(function (response) {
         // console.log(response);
-	    return $scope.items = response;
-	});
+        return $scope.items = response;
+    });
 
 
-	$scope.submit = function (newItem) {
-		itemService.postItems(newItem).then(function () {
-			$scope.items.push(newItem);
-			console.log($scope.items);
-		});
-	};
+    $scope.submit = function (newItem) {
+        itemService.postItems(newItem).then(function () {
+            $scope.items.push(newItem);
+            console.log($scope.items);
+        });
+    };
 
-	$scope.remove = function (index, id) {
-		itemService.removeItems(id).then(function (response) {
-			$scope.items.splice(index, 1);
-		});
-	};
+    $scope.remove = function (index, id) {
+        itemService.removeItems(id).then(function (response) {
+            $scope.items.splice(index, 1);
+        });
+    };
 
-	$scope.save = function (newItem) {
-		itemService.saveItems(newItem);
-	};
+    $scope.save = function (newItem) {
+        itemService.saveItems(newItem);
+    };
 
     $scope.showForm = function () {
         $scope.message = "Show Form Button Clicked";
@@ -43,7 +53,7 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 
         modalInstance.result.then(function (newItem) {
             console.log(newItem);
-            itemService.postItems(newItem).then(function(data) {
+            itemService.postItems(newItem).then(function (data) {
                 $scope.items.push(data);
             });
             // $scope.selected = newItem;

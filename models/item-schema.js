@@ -10,6 +10,10 @@ var itemSchema = new Schema({
     condition: String,
     location: String,
     email: String,
+    favoritedBy: [{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }],
     donation: {
         type: Boolean,
         default: true

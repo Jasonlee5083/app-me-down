@@ -5,6 +5,7 @@ var app = angular.module("appMeDown");
 
 app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStorage", "UserService", "itemService", function ($scope, $uibModal, $log, $localStorage, UserService, itemService) {
     $scope.items = [];
+    $scope.favorites = [];
 
 
     $scope.userService = UserService;
@@ -16,17 +17,17 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
         } else {
             alert("The two passwords didn't match");
         }
-    }
+    };
 
     itemService.getUsersItems().then(function (items) {
         $scope.items = items;
-    })
+    });
 
     $scope.delete = function (index, id) {
         itemService.removeItems(id).then(function () {
             $scope.items.splice($scope.items.indexOf(index), 1);
         })
-    }
+    };
 
     $scope.edit = function (index, item) {
         itemService.editItems(item).then(function (response) {
@@ -34,8 +35,14 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
             $scope.allItems = response;
 
         })
+    };
+
+    itemService.getFavorites().then(function (item) {
+        $scope.favorites = item;
+    })
 
 
-    }
+
+
 
 }]);

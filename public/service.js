@@ -36,6 +36,16 @@ app.service("itemService", ["$http", function ($http) {
             alert("Error " + response.status + ": " + response.statusText);
         });
     };
+
+    this.getFavorites = function () {
+        return $http.get("/api/items?favorite=true").then(function (response) {
+            console.log(response.data);
+            return response.data;
+        }, function (response) {
+            alert("Error " + response.status + ": " + response.statusText);
+        });
+    };
+
 }]);/**
  * Created by sim_one_n_only on 5/8/17.
  */

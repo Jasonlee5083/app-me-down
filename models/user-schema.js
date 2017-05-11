@@ -15,6 +15,12 @@ var userSchema = new Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required:true,
+        unique: true,
+        match: "shedamoe@gmail.com"
+    },
     admin: {
         type: Boolean,
         default: false
