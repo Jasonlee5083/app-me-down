@@ -1,7 +1,6 @@
 var app = angular.module("appMeDown");
 
 app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemService", "mapService", function ($scope, $log, $http, $uibModal, itemService, mapService) {
-
 	//	$scope.markers = [];
 	//	$scope.items = [];
 
@@ -15,11 +14,11 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 
 	// default map view
 	//	createMap(config);
-	
-//	$scope.form = {};
-//	$scope.markers = [];
-//	$scope.items = [];
-	
+
+	//	$scope.form = {};
+	//	$scope.markers = [];
+	//	$scope.items = [];
+
 	itemService.getItems().then(function (items) {
 		items.forEach(function (item) {
 			item.map = {
@@ -27,7 +26,10 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 					latitude: item.place.lat,
 					longitude: item.place.lng
 				},
-				zoom: item.place.zoom,
+				zoom: 14
+			};
+			item.options = {
+				maxZoom: 14
 			};
 			item.marker = {
 				id: item._id,
@@ -40,6 +42,7 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 				}
 			}
 		});
+		console.log(items);
 		$scope.items = items;
 	});
 
@@ -84,8 +87,12 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 						latitude: newItem.place.lat,
 						longitude: newItem.place.lng
 					},
-					zoom: 14,
+					zoom: 14
 				};
+				newItem.options = {
+					maxZoom: 14
+				};
+
 				newItem.marker = {
 					id: newItem._id,
 					coords: {
@@ -96,6 +103,7 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 						title: newItem.place.name
 					}
 				}
+				console.log(newItem);
 				$scope.items.push(newItem);
 				// Create the google map
 				//				createMap(config);

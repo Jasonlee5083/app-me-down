@@ -11,8 +11,7 @@ var itemSchema = new Schema({
     place: {
 		name: String,
 		lat: Number,
-		lng: Number,
-		zoom:Number
+		lng: Number
 	},
     email: String,
     donation: {

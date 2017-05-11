@@ -35,11 +35,10 @@
 					<p class="card-text">{{item.email}}</p>
 				</div>
 			</div>
-
 		</div>
 		<div class="row">
 			<div class="map col-sm-offset-3 col-sm-6">
-				<ui-gmap-google-map center="item.map.center" options="item.marker.options" events="marker.events" zoom="item.map.zoom" aria-label="Google map">
+				<ui-gmap-google-map center="item.map.center" options="item.options" zoom="item.map.zoom" aria-label="Google map">
 					<ui-gmap-marker fit=true coords="item.marker.coords" idkey="item.marker.id">
 						<ui-gmap-window>
 							<div>{{item.marker.window.title}}</div>
