@@ -8,7 +8,11 @@ var itemSchema = new Schema({
     photo: [String],
     description: String,
     condition: String,
-    location: String,
+    place: {
+		name: String,
+		lat: Number,
+		lng: Number
+	},
     email: String,
     favoritedBy: [{
         type: Schema.Types.ObjectId,
