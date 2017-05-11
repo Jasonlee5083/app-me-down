@@ -1,4 +1,4 @@
-var app = angular.module("appMeDown", ["ngRoute", "appMeDown.Auth", "ngAnimate", "ngSanitize", "ui.bootstrap"]);
+var app = angular.module("appMeDown", ["ngRoute", "appMeDown.Auth", "ngAnimate", "ngSanitize", "ui.bootstrap","uiGmapgoogle-maps"]);
 
 app.controller("mainController", ["$scope", function ($scope) {
 
@@ -19,3 +19,10 @@ app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $lo
 			redirectTo: "/home"
 		})
 }])
+
+app.config(['uiGmapGoogleMapApiProvider', function (GoogleMapApiProviders) {
+
+	GoogleMapApiProviders.configure({
+		china: true
+	});
+    }]);
