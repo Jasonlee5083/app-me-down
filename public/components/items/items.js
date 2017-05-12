@@ -25,7 +25,6 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 				}
 			}
 		});
-		console.log(items);
 		$scope.items = items;
 	});
 
@@ -47,8 +46,6 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 		itemService.saveItems(newItem);
 	};
 	$scope.showForm = function () {
-		$scope.message = "Show Form Button Clicked";
-		console.log($scope.message);
 		var modalInstance = $uibModal.open({
 			templateUrl: "add-item-modal.html",
 			controller: "itemModalInstanceController",
@@ -61,9 +58,8 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 		});
 
 		modalInstance.result
-			.then(function (newItem) {
-				console.log(newItem);
-				return itemService.postItems(newItem)
+			.then(function (data) {
+				return itemService.postItems(data)
 			})
 			.then(function (newItem) {
 				newItem.map = {

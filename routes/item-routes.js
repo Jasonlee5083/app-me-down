@@ -1,6 +1,7 @@
 var express = require("express");
 var itemRouter = express.Router();
 var Item = require("../models/item-schema");
+var multer = require("multer");
 
 itemRouter.route("/")
     .get(function (req, res) {
@@ -13,15 +14,37 @@ itemRouter.route("/")
             res.send(items)
         });
     })
-    .post(function (req, res) {
-        var item = new Item(req.body);
-        item.user = req.user;
 
-        item.save(function (err, newitem) {
-            if (err) res.status(500).send(err);
-            res.status(201).send(newitem);
+// Setting up multer settings for images post
+var storage = multer.diskStorage({ //multers disk storage settings
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+        var datetimestamp = Date.now();
+        var origNameArr = file.originalname.split(".");
+        console.log(origNameArr[0]);
+
+        cb(null, origNameArr[0] + '-' + datetimestamp + '.' + origNameArr[origNameArr.length - 1]);
+    }
+});
+
+var upload = multer({storage: storage}).any();
+
+itemRouter.route("/")
+    .post(upload, function (req, res) {
+            var filenames = req.files.map(function(file) {
+                return file.filename;
+            });
+            var item = new Item(req.body.data);
+            item.photos = filenames;
+            item.user = req.user;
+
+            item.save(function (err, newitem) {
+                if (err) res.status(500).send(err);
+                res.status(201).send(newitem);
+            });
         });
-    });
 
 itemRouter.route("/:itemId")
     .get(function (req, res) {

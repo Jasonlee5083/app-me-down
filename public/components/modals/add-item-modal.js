@@ -14,8 +14,7 @@ app.controller("itemModalInstanceController", ["$scope", "$timeout", "$uibModalI
 //	$scope.items = [];
 
 	$scope.submit = function (newItem) {
-		newItem.photos = $scope.dzMethods.getAllFiles();
-		$uibModalInstance.close(newItem);
+		$uibModalInstance.close({newItem: newItem, images: $scope.dzMethods.getAllFiles()});
 	};
 	
 	$scope.cancel = function () {
@@ -35,7 +34,7 @@ app.controller("itemModalInstanceController", ["$scope", "$timeout", "$uibModalI
         dictDefaultMessage : 'Click to add or drop photos',
         dictRemoveFile : 'Remove photo',
         dictResponseError : 'Could not upload this photo',
-		autoProcessQueue : false
+		autoProcessQueue : false,
 	};
 
 	$scope.dzMethods = {};

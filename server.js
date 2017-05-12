@@ -6,22 +6,19 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var config = require("./config");  
 var expressJwt = require("express-jwt");
-var multer = require("multer")
-
-
 
 var port = process.env.PORT || 5000;
 
 app.use(morgan("dev"));
+
 app.use(bodyParser.json());
+
 app.use("/api", expressJwt({secret: config.secret}));
 
 app.use("/api/items", require("./routes/item-routes"));
 
-
-
-
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "uploads")));
 
 mongoose.connect(config.database); 
 

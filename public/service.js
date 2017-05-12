@@ -10,22 +10,18 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
 		});
 	};
 
-	this.postItems = function (newItem) {
-		return mapService.getMapinfo(newItem.place.name)
+	this.postItems = function (data) {
+		return mapService.getMapinfo(data.newItem.place.name)
 			.then(function (mapData) {
-				newItem.place.lat = mapData.results[0].geometry.location.lat;
-				newItem.place.lng = mapData.results[0].geometry.location.lng;
-
-
-
-
-
-
-
-
-				return $http.post("/api/items/", newItem);
+				data.newItem.place.lat = mapData.results[0].geometry.location.lat;
+				data.newItem.place.lng = mapData.results[0].geometry.location.lng;
+				return Upload.upload({
+					url: "/api/items",
+					data: {file: data.images, data: data.newItem}
+				});
 			})
 			.then(function (response) {
+				console.log(response.data);
 				return response.data;
 			});
 	};
