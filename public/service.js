@@ -20,7 +20,6 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
 				});
 			})
 			.then(function (response) {
-				console.log(response.data);
 				return response.data;
 			});
 	};
@@ -50,9 +49,16 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
         });
     };
 
+	this.searchItems = function () {
+		return $http.get("/api/items?" + "").then(function (response) {
+            return response.data;
+        }, function (response) {
+			alert("Error " + response.status + ": " + response.statusText);
+		});
+	};
+
     this.getFavorites = function () {
-        return $http.get("/api/items/favorites?user=currentUser").then(function (response) {
-            console.log(response.data);
+        return $http.get("/api/items?favoritedBy=currentUser").then(function (response) {
             return response.data;
         }, function (response) {
             alert("Error " + response.status + ": " + response.statusText);
@@ -60,7 +66,7 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
     };
 
     this.postFavorite = function (item) {
-    	return $http.post("/api/items/favorites/" + item).then(function (response) {
+    	return $http.post("/api/items/" + item._id + "/favorites/").then(function (response) {
     		return response.data;
 		})
 	};
