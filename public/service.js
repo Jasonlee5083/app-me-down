@@ -20,7 +20,6 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
 				});
 			})
 			.then(function (response) {
-				console.log(response.data);
 				return response.data;
 			});
 	};
