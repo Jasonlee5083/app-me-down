@@ -1,5 +1,18 @@
-var app = angular.module("appMeDown", ["ngRoute", "appMeDown.Auth", "ngAnimate", "ngSanitize", "ui.bootstrap","uiGmapgoogle-maps", "ngMaterial", "ngAria"]);
 
+var app = angular.module("appMeDown", [
+	"ngRoute",
+	"appMeDown.Auth",
+	"ngAnimate",
+	"ngSanitize",
+	"ui.bootstrap",
+	"uiGmapgoogle-maps",
+	"thatisuday.dropzone",
+	"ngFileUpload",
+  "ngMaterial", 
+  "ngAria"
+]);
+
+Dropzone.autoDiscover = false;
 
 app.controller("mainController", ["$scope", function ($scope) {
 
@@ -19,7 +32,7 @@ app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $lo
 		.otherwise({
 			redirectTo: "/home"
 		})
-}])
+}]);
 
 app.config(['uiGmapGoogleMapApiProvider', function (GoogleMapApiProviders) {
 

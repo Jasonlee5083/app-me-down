@@ -1,6 +1,6 @@
 var app = angular.module("appMeDown");
 
-app.service("itemService", ["$http", "mapService", function ($http, mapService) {
+app.service("itemService", ["$http", "Upload", "mapService", function ($http, Upload, mapService) {
 	this.getItems = function () {
 		return $http.get("/api/items").then(function (response) {
 			return response.data;
@@ -9,15 +9,18 @@ app.service("itemService", ["$http", "mapService", function ($http, mapService) 
 		});
 	};
 
-	this.postItems = function (newItem) {
-		return mapService.getMapinfo(newItem.place.name)
+	this.postItems = function (data) {
+		return mapService.getMapinfo(data.newItem.place.name)
 			.then(function (mapData) {
-				newItem.place.lat = mapData.results[0].geometry.location.lat;
-				newItem.place.lng = mapData.results[0].geometry.location.lng;
-				newItem.place.zoom = 14;
-				return $http.post("/api/items/", newItem);
+				data.newItem.place.lat = mapData.results[0].geometry.location.lat;
+				data.newItem.place.lng = mapData.results[0].geometry.location.lng;
+				return Upload.upload({
+					url: "/api/items",
+					data: {file: data.images, data: data.newItem}
+				});
 			})
 			.then(function (response) {
+				console.log(response.data);
 				return response.data;
 			});
 	};
@@ -80,8 +83,10 @@ app.service("mapService", function ($http) {
 		});
 	}
 
-
 })
+
+
+
 
 /**
 
