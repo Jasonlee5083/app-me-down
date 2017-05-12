@@ -49,7 +49,7 @@
                                     <button class="btn btn-info float-right btn-sm" ng-click="editBox = !editBox">
                                         Edit
                                     </button>
-                                    <button class="btn btn-warning float-right btn-sm">Delete</button>
+                                    <button class="btn btn-warning float-right btn-sm" ng-click="delete($index,item._id)">Delete</button>
                                 </div>
                             </div>
 
@@ -74,7 +74,7 @@
                             {{item.photo}}
                             <h3>{{ item.title}}</h3>
                             <p>{{ item.description }}</p>
-                            <button class="btn btn-sm btn-warning" ng-click="delete($index, item._id)">Delete</button>
+                            <button class="btn btn-sm btn-warning" ng-click="delete($index,item._id)">Delete</button>
                         </div>
                     </div>
                 </uib-tab>
@@ -119,7 +119,4 @@
 </div>
 
 
-<div class="row cards" ng-repeat="item in items">
 
-</div>
-</div>

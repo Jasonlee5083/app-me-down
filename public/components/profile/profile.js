@@ -24,8 +24,11 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
     });
 
     $scope.delete = function (index, id) {
+		console.log(id);
         itemService.removeItems(id).then(function () {
-            $scope.items.splice($scope.items.indexOf(index), 1);
+//         $scope.items.splice($scope.items.indexOf(index), 1);
+	   $scope.items.splice(index, 1);
+
         })
     };
 
