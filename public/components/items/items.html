@@ -27,7 +27,7 @@
 		<div class="card card-outline-info mb-3">
 			<div class="card-deck">
 				<div class="card-block">
-					{{item.photo}}
+					<img class="img-responsive" ng-repeat="photo in item.photos" ng-src="{{photo}}" alt="">
 					<h4 class="card-title">{{item.title}}</h4>
 					<p class="card-text">{{item.description}}</p>
 					<p class="card-text">
@@ -51,10 +51,6 @@
 				<br>
 			</div>
 		</div>
-		<!--
-	<button class="btn mapButton col-sm-offset-5 col-sm-2" ng-click="createEvent(newItem);clicking=!clicking">map</button>
 	</div>
--->
-
-    </div>
 </div>
+

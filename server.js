@@ -9,20 +9,20 @@ var expressJwt = require("express-jwt");
 var nodemailer = require("nodemailer");
 var sgTransport = require("nodemailer-sendgrid-transport");
 
-
-
 var port = process.env.PORT || 5000;
 
 app.use(morgan("dev"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use("/api", expressJwt({secret: config.secret}));
 
 app.use("/api/items", require("./routes/item-routes"));
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "uploads")));
 
 mongoose.connect(config.database); 
 

@@ -5,7 +5,7 @@ var itemSchema = new Schema({
     type: String,
     ageRange: String,
     title: String,
-    photo: [String],
+    photos: [String],
     description: String,
     condition: String,
     place: {
