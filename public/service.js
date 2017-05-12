@@ -48,13 +48,19 @@ app.service("itemService", ["$http", "mapService", function ($http, mapService) 
     };
 
     this.getFavorites = function () {
-        return $http.get("/api/items?favorite=true").then(function (response) {
+        return $http.get("/api/items/favorites?user=currentUser").then(function (response) {
             console.log(response.data);
             return response.data;
         }, function (response) {
             alert("Error " + response.status + ": " + response.statusText);
         });
     };
+
+    this.postFavorite = function (item) {
+    	return $http.post("/api/items/favorites/" + item).then(function (response) {
+    		return response.data;
+		})
+	};
 }]);
 
 // Google Map API

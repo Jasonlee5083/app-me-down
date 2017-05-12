@@ -37,9 +37,9 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
         })
     };
 
-    itemService.getFavorites().then(function (item) {
-        $scope.favorites = item;
-    })
+    // itemService.getFavorites().then(function (items) {
+    //     $scope.favorites.push(items);
+    // })
 
 
 
