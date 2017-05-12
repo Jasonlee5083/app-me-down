@@ -1,4 +1,5 @@
 var app = angular.module("appMeDown.Auth", ["ngStorage"]);
+
 app.config(["$routeProvider", function ($routeProvider) {
 
     $routeProvider

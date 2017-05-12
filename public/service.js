@@ -1,6 +1,5 @@
 var app = angular.module("appMeDown");
 
-
 app.service("itemService", ["$http", "Upload", "mapService", function ($http, Upload, mapService) {
 	this.getItems = function () {
 		return $http.get("/api/items").then(function (response) {
@@ -21,7 +20,6 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
 				});
 			})
 			.then(function (response) {
-				console.log(response.data);
 				return response.data;
 			});
 	};
@@ -42,6 +40,36 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
 	this.mapService = function (item) {
 
 	}
+
+    this.getUsersItems = function () {
+        return $http.get("/api/items?user=currentUser").then(function (response) {
+            return response.data;
+        }, function (response) {
+            alert("Error " + response.status + ": " + response.statusText);
+        });
+    };
+
+	this.searchItems = function () {
+		return $http.get("/api/items?" + "").then(function (response) {
+            return response.data;
+        }, function (response) {
+			alert("Error " + response.status + ": " + response.statusText);
+		});
+	};
+
+    this.getFavorites = function () {
+        return $http.get("/api/items?favoritedBy=currentUser").then(function (response) {
+            return response.data;
+        }, function (response) {
+            alert("Error " + response.status + ": " + response.statusText);
+        });
+    };
+
+    this.postFavorite = function (item) {
+    	return $http.post("/api/items/" + item._id + "/favorites/").then(function (response) {
+    		return response.data;
+		})
+	};
 }]);
 
 // Google Map API

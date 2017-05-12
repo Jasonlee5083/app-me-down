@@ -1,3 +1,4 @@
+
 var app = angular.module("appMeDown", [
 	"ngRoute",
 	"appMeDown.Auth",
@@ -6,7 +7,9 @@ var app = angular.module("appMeDown", [
 	"ui.bootstrap",
 	"uiGmapgoogle-maps",
 	"thatisuday.dropzone",
-	"ngFileUpload"
+	"ngFileUpload",
+  "ngMaterial", 
+  "ngAria"
 ]);
 
 Dropzone.autoDiscover = false;
