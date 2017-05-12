@@ -3,6 +3,7 @@ node_modules/
 .DS_Store
 .idea/
 config.js
+uploads/
 *.orig
 bower_components/
 # Compiled source #

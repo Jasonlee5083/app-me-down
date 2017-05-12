@@ -1,19 +1,42 @@
 <div class="container-fluid">
 
+    <form class="navbar-form navbar-left">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" ng-model="post">
+        </div>
+        <!--<button type="submit" class="btn btn-default" ng-click="search = !search">Submit</button>-->
+    </form>
+
     <button class="btn btn-outline-info btn-lg" ng-click="showForm()">Add post</button>
     <div class="card" style="width: 20rem;">
         <div class="card-block">
             <h4 class="card-title">Categories</h4>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"><button class="btn-link" ng-click="post.type = 'Book'">Books</button></li>
-            <li class="list-group-item"><button class="btn-link" ng-click="post.type = 'Movie'">Movies</button></li>
-            <li class="list-group-item"><button class="btn-link" ng-click="post.type = 'Toys & Games'">Toys</button></li>
-            <li class="list-group-item"><button class="btn-link" ng-click="post.type = 'Furniture'">Furniture</button></li>
-            <li class="list-group-item"><button class="btn-link" ng-click="post.type = 'Feeding'">Feeding</button></li>
-            <li class="list-group-item"><button class="btn-link" ng-click="post.type = 'Health & Safety'">Health & Safety</button></li>
-            <li class="list-group-item"><button class="btn-link" ng-click="post.type = 'Clothes'">Clothes</button></li>
-            <li class="list-group-item"><button class="btn-link" ng-click="post.type = 'Other'">Other</button></li>
+            <li class="list-group-item">
+                <button class="btn-link" ng-click="post.type = 'Book'">Books</button>
+            </li>
+            <li class="list-group-item">
+                <button class="btn-link" ng-click="post.type = 'Movie'">Movies</button>
+            </li>
+            <li class="list-group-item">
+                <button class="btn-link" ng-click="post.type = 'Toys & Games'">Toys</button>
+            </li>
+            <li class="list-group-item">
+                <button class="btn-link" ng-click="post.type = 'Furniture'">Furniture</button>
+            </li>
+            <li class="list-group-item">
+                <button class="btn-link" ng-click="post.type = 'Feeding'">Feeding</button>
+            </li>
+            <li class="list-group-item">
+                <button class="btn-link" ng-click="post.type = 'Health & Safety'">Health & Safety</button>
+            </li>
+            <li class="list-group-item">
+                <button class="btn-link" ng-click="post.type = 'Clothes'">Clothes</button>
+            </li>
+            <li class="list-group-item">
+                <button class="btn-link" ng-click="post.type = 'Other'">Other</button>
+            </li>
         </ul>
     </div>
 
@@ -53,4 +76,3 @@
 		</div>
 	</div>
 </div>
-
