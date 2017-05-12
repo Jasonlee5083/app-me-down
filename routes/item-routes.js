@@ -16,7 +16,7 @@ itemRouter.route("/")
             if (err) res.status(500).send(err);
             res.send(items)
         });
-    })
+    });
 
 // Setting up multer settings for images post
 var storage = multer.diskStorage({ //multers disk storage settings
