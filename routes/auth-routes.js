@@ -1,12 +1,12 @@
-var express = require("express");  
-var authRoutes = express.Router();  
-var User = require("../models/user-schema");  
-var jwt = require("jsonwebtoken");  
+var express = require("express");
+var authRoutes = express.Router();
+var User = require("../models/user-schema");
+var jwt = require("jsonwebtoken");
 var config = require("../config");
 
 authRoutes.post("/login", function (req, res) {
 
-     User.findOne({username: req.body.username}, function (err, user) {
+    User.findOne({username: req.body.username}, function (err, user) {
         if (err) res.status(500).send(err);
         if (!user) {
             res.status(401).send({success: false, message: "User with the provided username was not found"})
@@ -15,8 +15,13 @@ authRoutes.post("/login", function (req, res) {
                 if (err) throw (err);
                 if (!match) res.status(401).send({success: false, message: "Incorrect password"});
                 else {
-                    var token = jwt.sign(user.toObject(), config.secret, {expiresIn: "24h"});  
-					res.send({user: user.withoutPassword(),token: token, success: true, message: "Here's your token!"});  
+                    var token = jwt.sign(user.toObject(), config.secret, {expiresIn: "24h"});
+                    res.send({
+                        user: user.withoutPassword(),
+                        token: token,
+                        success: true,
+                        message: "Here's your token!"
+                    });
                 }
             });
         }
@@ -24,13 +29,13 @@ authRoutes.post("/login", function (req, res) {
 });
 
 
-authRoutes.post("/signup", function (req, res) {  
+authRoutes.post("/signup", function (req, res) {
     User.find({username: req.body.username}, function (err, existingUser) {
         if (err) return res.status(500).send(err);
         if (existingUser.length) return res.send({success: false, message: "That username is already taken."});
         else {
-			console.log("Body:");
-			console.log(req.body)
+            console.log("Body:");
+            console.log(req.body)
             var newUser = new User(req.body);
             newUser.save(function (err, userObj) {
                 if (err) return res.status(500).send(err);
@@ -41,7 +46,6 @@ authRoutes.post("/signup", function (req, res) {
 });
 
 authRoutes.post("/change-password", function (req, res) {
-    console.log(req);
     User.findById(req.user._id, function (err, user) {
         if (err) {
             res.status(500).send(err);
@@ -53,5 +57,6 @@ authRoutes.post("/change-password", function (req, res) {
         }
     });
 });
+
 
 module.exports = authRoutes;  

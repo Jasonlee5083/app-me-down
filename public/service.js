@@ -1,6 +1,5 @@
 var app = angular.module("appMeDown");
 
-
 app.service("itemService", ["$http", "Upload", "mapService", function ($http, Upload, mapService) {
 	this.getItems = function () {
 		return $http.get("/api/items").then(function (response) {
@@ -42,6 +41,29 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
 	this.mapService = function (item) {
 
 	}
+
+    this.getUsersItems = function () {
+        return $http.get("/api/items?user=currentUser").then(function (response) {
+            return response.data;
+        }, function (response) {
+            alert("Error " + response.status + ": " + response.statusText);
+        });
+    };
+
+    this.getFavorites = function () {
+        return $http.get("/api/items/favorites?user=currentUser").then(function (response) {
+            console.log(response.data);
+            return response.data;
+        }, function (response) {
+            alert("Error " + response.status + ": " + response.statusText);
+        });
+    };
+
+    this.postFavorite = function (item) {
+    	return $http.post("/api/items/favorites/" + item).then(function (response) {
+    		return response.data;
+		})
+	};
 }]);
 
 // Google Map API
