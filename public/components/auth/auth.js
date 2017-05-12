@@ -58,7 +58,7 @@ app.service("UserService", ["$http", "$location", "TokenService", "$localStorage
     };
 
     this.changePassword = function (newPassword) {
-        console.log(newPassword);
+        // console.log(newPassword);
         return $http.post("/auth/change-password", {newPassword: newPassword}).then(function (response) {
             alert("Password changed successfully!");
             return response.data;

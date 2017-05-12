@@ -6,6 +6,7 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var config = require("./config");  
 var expressJwt = require("express-jwt");
+var multer = require("multer")
 
 
 

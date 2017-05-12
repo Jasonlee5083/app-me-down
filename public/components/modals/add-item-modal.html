@@ -53,8 +53,14 @@
                 <input type="email" class="form-control" ng-model="newItem.email">
             </div>
 
+            <div class="dropzone" options="dzOptions" callbacks="dzCallbacks" methods="dzMethods" ng-model="newItem.photos" ng-dropzone></div>
+
             <div class="modal-footer">
-                <button class="btn btn-primary" ng-click="submit(newItem)" data-dismiss="modal">Add
+
+               
+                <!--<button class="btn btn-default" ng-click="dzMethods.processQueue();">Start Uploading</button>-->
+
+                <button class="btn btn-primary" ng-click="submit(newItem);" data-dismiss="modal">Add
                 </button>
                 <button class="btn btn-warning" ng-click="cancel()" data-dismiss="modal">Cancel</button>
             </div>

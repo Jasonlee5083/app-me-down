@@ -1,23 +1,6 @@
 var app = angular.module("appMeDown");
 
 app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemService", "mapService", function ($scope, $log, $http, $uibModal, itemService, mapService) {
-	//	$scope.markers = [];
-	//	$scope.items = [];
-
-	//	var config = {
-	//		center: {
-	//			latitude: 39.8282,
-	//			longitude: -98.5795
-	//		},
-	//		zoom: 4
-	//	};
-
-	// default map view
-	//	createMap(config);
-
-	//	$scope.form = {};
-	//	$scope.markers = [];
-	//	$scope.items = [];
 
 	itemService.getItems().then(function (items) {
 		items.forEach(function (item) {
@@ -79,6 +62,7 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 
 		modalInstance.result
 			.then(function (newItem) {
+				console.log(newItem);
 				return itemService.postItems(newItem)
 			})
 			.then(function (newItem) {

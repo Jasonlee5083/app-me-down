@@ -1,7 +1,7 @@
 var app = angular.module("appMeDown");
 
 
-app.service("itemService", ["$http", "mapService", function ($http, mapService) {
+app.service("itemService", ["$http", "Upload", "mapService", function ($http, Upload, mapService) {
 	this.getItems = function () {
 		return $http.get("/api/items").then(function (response) {
 			return response.data;
@@ -15,7 +15,14 @@ app.service("itemService", ["$http", "mapService", function ($http, mapService) 
 			.then(function (mapData) {
 				newItem.place.lat = mapData.results[0].geometry.location.lat;
 				newItem.place.lng = mapData.results[0].geometry.location.lng;
-				newItem.place.zoom = 14;
+
+
+
+
+
+
+
+
 				return $http.post("/api/items/", newItem);
 			})
 			.then(function (response) {
@@ -58,8 +65,10 @@ app.service("mapService", function ($http) {
 		});
 	}
 
-
 })
+
+
+
 
 /**
 

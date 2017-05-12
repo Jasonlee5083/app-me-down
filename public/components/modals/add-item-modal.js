@@ -7,23 +7,49 @@ app.directive("postModal", [function () {
 	};
 }]);
 
-app.controller("itemModalInstanceController", ["$scope", "$uibModalInstance", "itemService", "mapService", function ($scope, $uibModalInstance, itemService, mapService) {
+app.controller("itemModalInstanceController", ["$scope", "$timeout", "$uibModalInstance", "itemService", "mapService", function ($scope, $timeout, $uibModalInstance, itemService, mapService) {
 	
 //	$scope.form = {};
 //	$scope.markers = [];
 //	$scope.items = [];
 
 	$scope.submit = function (newItem) {
+		newItem.photos = $scope.dzMethods.getAllFiles();
 		$uibModalInstance.close(newItem);
-	}
+	};
 	
 	$scope.cancel = function () {
 		$uibModalInstance.dismiss('closed');
 	};
+// }]);
+//
+//
+// // ng-Dropzone
+//
+// app.controller('uploadController', function($scope){
+	$scope.dzOptions = {
+		url : "/api/items",
+		paramName: "photo",
+		maxFilesize: "10",
+		addRemoveLinks : true,
+        dictDefaultMessage : 'Click to add or drop photos',
+        dictRemoveFile : 'Remove photo',
+        dictResponseError : 'Could not upload this photo',
+		autoProcessQueue : false
+	};
+
+	$scope.dzMethods = {};
+
+	$scope.dzCallbacks = {
+        'addedfile' : function(file){
+            $scope.showBtns = true;
+            $scope.lastFile = file;
+        },
+        'error' : function(file, xhr){
+            console.warn('File failed to upload from dropzone 2.', file, xhr);
+        }
+	}
 }]);
-
-
-
 
 
 
