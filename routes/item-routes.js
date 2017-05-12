@@ -9,6 +9,9 @@ itemRouter.route("/")
         if (req.query.user === "currentUser") {
             filter.user = req.user._id;
         }
+        if(req.query.favoritedBy === "currentUser") {
+            filter.favoritedBy = req.user._id;
+        }
         Item.find(filter, function (err, items) {
             if (err) res.status(500).send(err);
             res.send(items)
@@ -70,6 +73,15 @@ itemRouter.route("/:itemId")
         })
     });
 
-
+itemRouter.route("/:itemId/favorites/")
+    .post(function (req, res) {
+        Item.findByIdAndUpdate(req.params.itemId, {$addToSet: {"favoritedBy": req.user._id}}, {new: true}, function (err, item) {
+            if (err) res.status(500).send(err);
+            if (!item) res.status(404).send("Item not found.");
+            else {
+                res.send(item);
+            }
+        })
+    });
 
 module.exports = itemRouter;

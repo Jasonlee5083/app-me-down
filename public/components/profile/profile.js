@@ -23,6 +23,10 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
         $scope.items = items;
     });
 
+    itemService.getFavorites().then(function (items) {
+        $scope.favorites = items;
+    })
+
     $scope.delete = function (index, id) {
 		console.log(id);
         itemService.removeItems(id).then(function () {
