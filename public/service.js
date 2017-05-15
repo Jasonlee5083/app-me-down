@@ -70,6 +70,19 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
     		return response.data;
 		})
 	};
+	
+	this.removeFavorite = function (item) {
+       return $http.put("/api/items/" + item + "/favorites/").then(function (response) {
+           return response.data;
+        });
+    };
+	
+//		this.removeFavorite = function (item) {
+//       return $http.delete("/api/items/" + item + "/favorites/").then(function (response) {
+//           return response.data;
+//        });
+//    };
+	
 }]);
 
 // Google Map API

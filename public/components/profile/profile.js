@@ -6,6 +6,7 @@ var app = angular.module("appMeDown");
 app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStorage", "UserService", "itemService", function ($scope, $uibModal, $log, $localStorage, UserService, itemService) {
     $scope.items = [];
     $scope.favorites = [];
+	$scope.favoritesby = [];
 
 
     $scope.userService = UserService;
@@ -47,7 +48,17 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
     // itemService.getFavorites().then(function (items) {
     //     $scope.favorites.push(items);
     // })
+	$scope.deleteFavorite = function (index, item) {
+      itemService.removeFavorite(item).then(function (response) {
+		  $scope.favoritesby=response.favoritedBy;
+		  
+          console.log($scope.favoritesby);
+           $scope.favorites.splice(index, 1);
+		  $scope.favoritesby.splice(index, 1);
+		  console.log($scope.favoritesby);
 
+      })
+   }
 
 
 
