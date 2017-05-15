@@ -4,6 +4,30 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 
     $scope.favoriteItems = [];
     $scope.searchedItems = [];
+	$scope.selectedItem = [];
+
+    // $scope.viewItem = function (selectedItem) {
+		// console.log("modal")
+		// var modalInstance = $uibModal.open({
+		// 	templateUrl: "item-details-modal.html",
+		// 	controller: "modalDetailInstanceController",
+		// 	$scope: scope.selectedItem,
+		// 	resolve: {
+		// 		item: function () {
+		// 			return selectedItem;
+		// 		}
+		// 	}
+		// });
+    //
+    //     modalInstance.result
+    //         .then(function (selectedItem) {
+    //             return itemService.getItems(selectedItem)
+    //         })
+    //         .then(function () {
+    //             scope.selectedItem = selectedItem;
+    //             console.log(selectedItem);
+    //         })
+    // };
 
     $scope.favorite = function (item) {
         itemService.postFavorite(item).then(function (response) {
