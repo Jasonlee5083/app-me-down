@@ -82,6 +82,25 @@ itemRouter.route("/:itemId/favorites/")
                 res.send(item);
             }
         })
-    });
+    })
+	.put(function (req, res) {
+       Item.findByIdAndUpdate(req.params.itemId, {$pull: {"favoritedBy": req.user._id}}, function (err, item) {
+           if(err) res.status(500).send(err);
+           if(!item) res.status(404).send("Item not found.");
+           else {
+
+               res.send(item);
+           }
+       })
+   })
+	.delete(function (req, res) {
+        Item.findByIdAndRemove(req.params.itemId, function (err, item) {
+            if (err) res.status(500).send(err);
+            res.send(item);
+        })
+    })
+	
+	;
+
 
 module.exports = itemRouter;
