@@ -21,6 +21,7 @@ var userSchema = new Schema({
         unique: true,
         match: "shedamoe@gmail.com"
     },
+    userImg: String,
     admin: {
         type: Boolean,
         default: false

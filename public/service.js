@@ -39,7 +39,7 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
 	};
 	this.mapService = function (item) {
 
-	}
+	};
 
     this.getUsersItems = function () {
         return $http.get("/api/items?user=currentUser").then(function (response) {
@@ -89,7 +89,7 @@ app.service("mapService", function ($http) {
 		});
 	}
 
-})
+});
 
 
 

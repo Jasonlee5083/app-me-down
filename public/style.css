@@ -24,13 +24,12 @@
 
 h3 {
 	text-align: center;
-	font-family: Playfair;
+	font-family: Playfair, serif;
 	color: #4A4A4A;
 }
 
 h1 {
-	font-family: Raleway;
-	font-style: bold;
+	font-family: Raleway, sans-serif;
 	color: #4A4A4A;
 }
 
@@ -42,10 +41,13 @@ h1 {
 	font-size: 1em;
 	overflow: hidden;
 	padding: 0;
+	margin-top: 5px;
 	border: none;
-	border-radius: .28571429rem;
+	border-radius: 4px;
 	box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
-	width: 100%
+	width: 100%;
+	max-height: 400px;
+	min-width: 200px;
 }
 
 .card-block {
@@ -63,6 +65,21 @@ h1 {
 	display: block;
 	width: 100%;
 	height: auto;
+	max-height: 200px;
+	object-fit: cover;
+}
+
+.item-price {
+	position: relative;
+	font-family: Raleway, sans-serif;
+	color: white;
+	background-color: rgba(0,0,0,.19);
+	border: 2px solid white;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	bottom: 30px;
+
 }
 
 .card-title {
@@ -74,45 +91,54 @@ h1 {
 }
 
 .card-text {
-	clear: both;
+	/*clear: both;*/
 	margin-top: .5em;
 	color: rgba(0, 0, 0, .68);
 }
 
 .card-footer {
 	font-size: 1em;
-	position: static;
+	/*position: static;*/
 	top: 0;
 	left: 0;
 	max-width: 100%;
 	padding: .75em 1em;
 	color: rgba(0, 0, 0, .4);
 	border-top: 1px solid rgba(0, 0, 0, .05) !important;
-	background: #D8D8D8;
+	background: #F1FFE1;
 }
 
 .card-inverse .btn {
 	border: 1px solid rgba(0, 0, 0, .05);
 }
 
-.itemImage {
-	position: absolute;
-	top: -12px;
-	display: inline-block;
-	overflow: hidden;
-	box-sizing: border-box;
-	width: 25px;
-	height: 25px;
-	margin: 0;
-	border: 1px solid #fff;
-	border-radius: 50%;
-}
+/*.itemImage {*/
+	/*position: absolute;*/
+	/*top: -12px;*/
+	/*display: inline-block;*/
+	/*overflow: hidden;*/
+	/*box-sizing: border-box;*/
+	/*width: 25px;*/
+	/*height: 25px;*/
+	/*margin: 0;*/
+	/*border: 1px solid #fff;*/
+	/*border-radius: 50%;*/
+/*}*/
 
 .profile-avatar {
-	display: block;
-	width: 100%;
-	height: auto;
+	/*display: block;*/
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
+	/*padding: 5px;*/
+}
+
+.profilePic {
+	border-radius: 5px;
+}
+
+.username {
+	vertical-align: sub;
 }
 
 .profile-inline {

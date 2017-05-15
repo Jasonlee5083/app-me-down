@@ -35,7 +35,7 @@ authRoutes.post("/signup", function (req, res) {
         if (existingUser.length) return res.send({success: false, message: "That username is already taken."});
         else {
             console.log("Body:");
-            console.log(req.body)
+            console.log(req.body);
             var newUser = new User(req.body);
             newUser.save(function (err, userObj) {
                 if (err) return res.status(500).send(err);

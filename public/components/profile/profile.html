@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 profile">
-            <img src="http://placekitten.com/g/100/100" alt="Kittens" class="img-responsive">
+            <img class="profilePic" src="https://api.adorable.io/avatars/200/{{userService.currentUser.name }}.png" alt="Kittens" class="img-responsive">
             <h1>{{ userService.currentUser.name }}</h1>
             <hr>
             <h3>Change Password</h3>
@@ -27,13 +27,17 @@
                     <div class="row tabContent">
                         <div class="cards col-sm-6 col-md-4 col-lg-3" ng-repeat="item in items">
                             <div class="card card-inverse card-success">
-                                <img class="card-img-top"
-                                     src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+                                <img class="card-img-top img-responsive"
+                                     ng-src="{{item.photos[0]}}">
+                                <!--<row>-->
+                                    <!--<div class="col-xs-4 col-xs-offset-4 item-price">${{item.price}}</div>-->
+
+                                <!--</row>-->
                                 <div class="card-block">
-                                    <figure class="itemImage">
-                                        <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif"
-                                             class="profile-avatar" alt="">
-                                    </figure>
+                                    <!--<figure class="itemImage">-->
+                                        <img ng-src="https://api.adorable.io/avatars/50/{{userService.currentUser.name }}.png"
+                                             class="profile-avatar" alt="https://api.adorable.io/avatars/50/{{userService.currentUser.name }}.png">
+                                    <!--</figure>-->
                                     <ul>
                                         <li><h4 class="card-title">{{item.title}}</h4></li>
                                         <div class="meta card-text">
@@ -49,18 +53,20 @@
                                     <button class="btn btn-info float-right btn-sm" ng-click="editBox = !editBox">
                                         Edit
                                     </button>
-                                    <button class="btn btn-warning float-right btn-sm" ng-click="delete($index,item._id)">Delete</button>
+                                    <button class="btn btn-warning float-right btn-sm"
+                                            ng-click="delete($index,item._id)">Delete
+                                    </button>
                                 </div>
                             </div>
 
                             <div ng-show="editBox">
                                 <form>
-                                    <input ng-model="item.type">
-                                    <input ng-model="item.ageRange">
-                                    <input ng-model="item.title">
-                                    <input ng-model="item.photo">
-                                    <input ng-model="item.description">
-                                    <input ng-model="item.condition">
+                                    <input type="" placehoder="Category" ng-model="item.type">
+                                    <input type="" placehoder="Age Range" ng-model="item.ageRange">
+                                    <input type="text" placehoder="Title" ng-model="item.title">
+                                    <input type="file" placehoder="Photo" ng-model="item.photo">
+                                    <input type="text" placehoder="Description" ng-model="item.description">
+                                    <input type="" placehoder="Condition" ng-model="item.condition">
                                     <button ng-click="edit($index, item); editBox = !editBox">Edit</button>
                                 </form>
                             </div>

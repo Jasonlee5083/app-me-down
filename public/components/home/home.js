@@ -5,4 +5,4 @@ var app = angular.module("appMeDown");
 
 app.controller("homeController", ["$scope", function ($scope) {
 
-}])
+}]);

@@ -8,6 +8,10 @@ var itemSchema = new Schema({
     photos: [String],
     description: String,
     condition: String,
+    price: {
+        type: Number,
+        required: true
+    },
     place: {
 		name: String,
 		lat: Number,
@@ -26,7 +30,11 @@ var itemSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true
-    }
+    },
+    // username: {
+    //     type: Schema.Types.string,
+    //     ref: "User"
+    // }   *** ask how to populate username ***
 
 });
 

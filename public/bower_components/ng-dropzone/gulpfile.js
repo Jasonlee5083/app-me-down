@@ -6,7 +6,7 @@ var
 	sass = require('gulp-sass'),	
 	autoprefixer = require('gulp-autoprefixer'),	
 	uglify = require('gulp-uglify'),	
-	sourcemaps = require('gulp-sourcemaps')
+	sourcemaps = require('gulp-sourcemaps');
 	gzip = require('gulp-gzip')
 ;
 

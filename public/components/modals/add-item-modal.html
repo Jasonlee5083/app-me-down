@@ -11,14 +11,14 @@
             <div class="form-group">
                 <label>Category:</label>
                 <select class="form-control" ng-model="newItem.type" placeholder="selectType">
-                        <option class="dropdown-item">Book</option>
-                        <option class="dropdown-item">Movie</option>
-                        <option class="dropdown-item">Toys & Games</option>
-                        <option class="dropdown-item">Clothes</option>
-                        <option class="dropdown-item">Furniture</option>
-                        <option class="dropdown-item">Feeding</option>
-                        <option class="dropdown-item">Health & Safety</option>
-                        <option class="dropdown-item">Other</option>
+                    <option class="dropdown-item">Book</option>
+                    <option class="dropdown-item">Movie</option>
+                    <option class="dropdown-item">Toys & Games</option>
+                    <option class="dropdown-item">Clothes</option>
+                    <option class="dropdown-item">Furniture</option>
+                    <option class="dropdown-item">Feeding</option>
+                    <option class="dropdown-item">Health & Safety</option>
+                    <option class="dropdown-item">Other</option>
                 </select>
             </div>
 
@@ -34,8 +34,13 @@
             </div>
 
             <div class="form-group">
+                <label for="price"> Price:</label>
+                <input id="price" type="number" class="form-control ng-model="newItem.price" placeholder="20.00">
+            </div>
+
+            <div class="form-group">
                 <label>Description:</label>
-                <input class="form-control" ng-model="newItem.description">
+                <textarea class="form-control" ng-model="newItem.description"></textarea>
             </div>
 
             <div class="form-group">
@@ -53,11 +58,12 @@
                 <input type="email" class="form-control" ng-model="newItem.email">
             </div>
 
-            <div class="dropzone" options="dzOptions" callbacks="dzCallbacks" methods="dzMethods" ng-model="newItem.photos" ng-dropzone name="file"></div>
+            <div class="dropzone" options="dzOptions" callbacks="dzCallbacks" methods="dzMethods"
+                 ng-model="newItem.photos" ng-dropzone name="file"></div>
 
             <div class="modal-footer">
 
-               
+
                 <!--<button class="btn btn-default" ng-click="dzMethods.processQueue();">Start Uploading</button>-->
 
                 <button class="btn btn-primary" ng-click="submit(newItem);" data-dismiss="modal">Add

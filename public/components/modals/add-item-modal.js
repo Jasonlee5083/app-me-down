@@ -34,7 +34,16 @@ app.controller("itemModalInstanceController", ["$scope", "$timeout", "$uibModalI
         dictDefaultMessage : 'Click to add or drop photos',
         dictRemoveFile : 'Remove photo',
         dictResponseError : 'Could not upload this photo',
-		autoProcessQueue : false,
+        init: function() {
+            this.on('error', function(file, errorMessage) {
+                if (file.accepted) {
+                    var mypreview = document.getElementsByClassName('dz-error');
+                    mypreview = mypreview[mypreview.length - 1];
+                    mypreview.classList.toggle('dz-error');
+                    mypreview.classList.toggle('dz-success');
+                }
+            });
+        }
 	};
 
 	$scope.dzMethods = {};

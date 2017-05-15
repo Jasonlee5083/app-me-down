@@ -10,7 +10,7 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 
         })
 
-    }
+    };
 
 	itemService.getItems().then(function (items) {
 		items.forEach(function (item) {
@@ -93,7 +93,7 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
                     window: {
                         title: newItem.place.name
                     }
-                }
+                };
                 console.log(newItem);
                 $scope.items.push(newItem);
             })
