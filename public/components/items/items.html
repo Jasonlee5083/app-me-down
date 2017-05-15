@@ -4,7 +4,6 @@
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Search" ng-model="post">
         </div>
-        <!--<button type="submit" class="btn btn-default" ng-click="search = !search">Submit</button>-->
 
         <div>
             <button class="btn btn-outline-info btn-lg" ng-click="showForm()">Add post</button>
@@ -110,6 +109,43 @@
             <!--</ui-gmap-google-map>-->
             <!--<br>-->
             <!--</div>-->
+<!--         </div>
+    </div>
+</div> -->
+
+    <div class="row cards" ng-repeat="item in items | filter: post">
+        <br>
+        <div class="card card-outline-info mb-3">
+            <div class="card-deck">
+                <div class="card-block">
+                    <img class="img-responsive" ng-repeat="photo in item.photos" ng-src="{{photo}}" alt="">
+                    <h4 class="card-title">{{item.title}}</h4>
+                    <p class="card-text">{{item.description}}</p>
+                    <p class="card-text">
+                        <small class="text muted">{{item.condition}}</small>
+                    </p>
+                    <h6 class="card-text">{{item.place.name}}</h6>
+                    <p class="card-text">{{item.email}}</p>
+                    <button href="#" class="btn btn-xs btn-info" ng-click="favorite(item)"><span
+                            class="glyphicon glyphicon-heart"></span> Favorite
+                    </button>
+                </div>
+            </div>
         </div>
+        <div class="row">
+            <div class="map col-sm-offset-3 col-sm-6">
+                <ui-gmap-google-map center="item.map.center" options="item.options" zoom="item.map.zoom"
+                                    aria-label="Google map">
+                    <ui-gmap-marker fit=true coords="item.marker.coords" idkey="item.marker.id">
+                        <ui-gmap-window>
+                            <div>{{item.marker.window.title}}</div>
+                        </ui-gmap-window>
+                    </ui-gmap-marker>
+                </ui-gmap-google-map>
+                <br>
+            </div>
+        </div>
+        <!--<button type="button" ng-click="viewItem(selectedItem)" href="/item-details-modal.html">Details</button>-->
     </div>
 </div>
+

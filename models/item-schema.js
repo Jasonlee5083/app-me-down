@@ -2,22 +2,41 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var itemSchema = new Schema({
-    type: String,
-    ageRange: String,
-    title: String,
-    photos: [String],
-    description: String,
-    condition: String,
-    price: {
-        type: Number,
+
+    type: {
+        type: String,
         required: true
     },
+    ageRange: {
+        type: String,
+        required: true
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    photos: {
+        type: [String],
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    condition: {
+        type: String,
+        required: true
+    },
+    price: String,
     place: {
 		name: String,
 		lat: Number,
 		lng: Number
 	},
-    email: String,
+    email: {
+        type: String,
+        required: true
+    },
     favoritedBy: [{
         type: Schema.Types.ObjectId,
         ref: "User"
