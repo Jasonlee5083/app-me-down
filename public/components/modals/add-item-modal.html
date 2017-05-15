@@ -24,8 +24,14 @@
 
             <div class="form-group">
                 <label>Age Range:</label>
-                <input type="text" id="serviceRequested" class="form-control"
-                       ng-model="newItem.ageRange">
+                <select type="text" id="serviceRequested" class="form-control"
+                        ng-model="newItem.ageRange">
+                    <option class="dropdown-item">0-12 months</option>
+                    <option class="dropdown-item">1-3 years</option>
+                    <option class="dropdown-item">4-6 years</option>
+                    <option class="dropdown-item">7-10 years</option>
+                    <option class="dropdown-item">11-14 years</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -35,12 +41,18 @@
 
             <div class="form-group">
                 <label>Description:</label>
-                <input class="form-control" ng-model="newItem.description">
+                <textarea class="form-control" ng-model="newItem.description"></textarea>
             </div>
 
             <div class="form-group">
                 <label>Condition:</label>
-                <input type="text" class="form-control" ng-model="newItem.condition">
+                <select type="text" class="form-control" ng-model="newItem.condition">
+                    <option class="dropdown-item">New (with tags/in original pacaking)</option>
+                    <option class="dropdown-item">Like New</option><option class="dropdown-item">0-12 months</option
+                    <option class="dropdown-item">Good</option>
+                    <option class="dropdown-item">Fair</option>
+                    <option class="dropdown-item">Needs Repair</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -57,7 +69,7 @@
 
             <div class="modal-footer">
 
-               
+
                 <!--<button class="btn btn-default" ng-click="dzMethods.processQueue();">Start Uploading</button>-->
 
                 <button class="btn btn-primary" ng-click="submit(newItem);" data-dismiss="modal">Add

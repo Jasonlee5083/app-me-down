@@ -28,6 +28,14 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
         $scope.favorites = items;
     })
 
+    $scope.deleteFavorite = function (index, item) {
+       itemService.removeFavorite(item).then(function (response) {
+           response.favoritedBy.splice(index, 1);
+           console.log(response.favoritedBy);
+           $scope.favorites.splice(index, 1);
+       })
+    }
+
     $scope.delete = function (index, id) {
 		console.log(id);
         itemService.removeItems(id).then(function () {
@@ -39,7 +47,6 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
 
     $scope.edit = function (index, item) {
         itemService.editItems(item).then(function (response) {
-            console.log(item);
             $scope.allItems = response;
 
         })
