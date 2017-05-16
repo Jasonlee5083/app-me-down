@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var itemSchema = new Schema({
+
     type: {
         type: String,
         required: true
@@ -26,6 +27,7 @@ var itemSchema = new Schema({
         type: String,
         required: true
     },
+    price: String,
     place: {
 		name: String,
 		lat: Number,
@@ -47,7 +49,11 @@ var itemSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true
-    }
+    },
+    // username: {
+    //     type: Schema.Types.string,
+    //     ref: "User"
+    // }   *** ask how to populate username ***
 
 });
 

@@ -1,0 +1,17 @@
+{
+  "name": "groupPJ",
+  "description": "",
+  "main": "config.js",
+  "authors": [
+    "Brenan Thompson <brenanthompson@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/vschool-slc-february/app-me-down",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
