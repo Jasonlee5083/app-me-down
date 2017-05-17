@@ -1,151 +1,134 @@
-<div class="container">
+<div class="container-fluid">
 
-    <form class="navbar-form navbar-left" style="width: 20em;">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search" ng-model="post">
-        </div>
-
-        <div>
-            <button class="btn btn-outline-info btn-lg" ng-click="showForm()">Add post</button>
-        </div>
-        <div class="categories">
-            <div class="card-block">
-                <h4 class="card-title">Categories</h4>
+    <!--<div class="col-xs-12 headerImg"></div>-->
+    <div class="row">
+        <!--<div class="col-xs-12">-->
+        <form></form>
+        <div class="navbar-form navbar-left" style="width: 20em;">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" ng-model="post">
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <button class="btn-link" ng-click="post.type = 'Book'">Books</button>
-                </li>
-                <li class="list-group-item">
-                    <button class="btn-link" ng-click="post.type = 'Movie'">Movies</button>
-                </li>
-                <li class="list-group-item">
-                    <button class="btn-link" ng-click="post.type = 'Toys & Games'">Toys</button>
-                </li>
-                <li class="list-group-item">
-                    <button class="btn-link" ng-click="post.type = 'Furniture'">Furniture</button>
-                </li>
-                <li class="list-group-item">
-                    <button class="btn-link" ng-click="post.type = 'Feeding'">Feeding</button>
-                </li>
-                <li class="list-group-item">
-                    <button class="btn-link" ng-click="post.type = 'Health & Safety'">Health & Safety</button>
-                </li>
-                <li class="list-group-item">
-                    <button class="btn-link" ng-click="post.type = 'Clothes'">Clothes</button>
-                </li>
-                <li class="list-group-item">
-                    <button class="btn-link" ng-click="post.type = 'Other'">Other</button>
-                </li>
-            </ul>
-        </div>
-    </form>
+            <!--<button type="submit" class="btn btn-default" ng-click="search = !search">Submit</button>-->
 
-
-    <div class="row tabContent">
-        <div class="cards col-sm-6 col-md-4 col-lg-3" ng-repeat="item in items | filter: post"
-        >
-            <div class="card card-inverse card-success">
-                <img class="img-responsive card-img-top" ng-src="{{item.photos[0]}}" alt="">
-                    <row>
-                        <div class="col-xs-4 col-xs-offset-4 item-price">${{item.price}}</div>
-
-                    </row>
+            <div>
+                <button class="btn btn-outline-info btn-lg" ng-click="showForm()">Add post</button>
+            </div>
+            <div class="categories">
                 <div class="card-block">
-                    <div>
-                        <img ng-src="https://api.adorable.io/avatars/50/{{item.user.name}}.png"
-                             class="profile-avatar" alt="">
-                        <p class="username">{{item.user.name }}</p>
-                    </div>
-                    <ul>
-                        <li><h4 class="card-title">{{item.title}}</h4></li>
-                        <div class="meta card-text">
-                            <li><a>{{item.condition}}</a></li>
-                        </div>
-                        <div class="card-text">
-                            <li><p>{{item.description | limitTo : 100}}</p></li>
-                        </div>
-                    </ul>
-                    <h6 class="card-text">{{item.place.name}}</h6>-->
-                    <p class="card-text">{{item.email}}</p>
-                    <button href="#" class="btn btn-xs btn-info"  ng-click="favorite(item)"><span class="glyphicon glyphicon-heart"></span> Favorite</button>
+                    <h4 class="card-title">Categories</h4>
                 </div>
-                <!--<div class="card-footer">-->
-                <!--&lt;!&ndash;<small>Date Created: {{item._id.getTimestamp()}}</small> *** Why doesn't this work?? ***&ndash;&gt;-->
-                <!--&lt;!&ndash;<button class="btn btn-info float-right btn-sm" ng-click="editBox = !editBox">&ndash;&gt;-->
-                <!--&lt;!&ndash;Edit&ndash;&gt;-->
-                <!--&lt;!&ndash;</button>&ndash;&gt;-->
-                <!--&lt;!&ndash;<button class="btn btn-warning float-right btn-sm"&ndash;&gt;-->
-                <!--&lt;!&ndash;ng-click="delete($index,item._id)">Delete&ndash;&gt;-->
-                <!--&lt;!&ndash;</button>&ndash;&gt;-->
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <button class="btn-link" ng-click="post.type = 'Book'">Books</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn-link" ng-click="post.type = 'Movie'">Movies</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn-link" ng-click="post.type = 'Toys & Games'">Toys</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn-link" ng-click="post.type = 'Furniture'">Furniture</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn-link" ng-click="post.type = 'Feeding'">Feeding</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn-link" ng-click="post.type = 'Health & Safety'">Health & Safety</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn-link" ng-click="post.type = 'Clothes'">Clothes</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn-link" ng-click="post.type = 'Other'">Other</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--</form>-->
+
+        <div class="row tabContent">
+            <div class="cards col-sm-6 col-md-4 col-lg-2" ng-repeat="item in items | filter: post">
+                <div class="card">
+                    <div class="row">
+                        <img class="img-responsive card-img-top" ng-src="{{item.photos[0]}}" alt="">
+                        <div class="row">
+                            <div class="col-xs-4 col-xs-offset-4 item-price">${{item.price}}</div>
+
+                        </div>
+                        <div class="card-block">
+                            <div class="avatar-block">
+                                <img ng-src="https://api.adorable.io/avatars/50/{{item.user}}.png"
+                                     class="profile-avatar img-rounded" alt="">
+                                <p class="username">{{item.user}}</p>
+
+                                <button href="#" class="btn btn-lg btn-danger" ng-click="favorite(item)"><span
+                                        class="glyphicon glyphicon-heart"></span>
+                                </button>
+                            </div>
+
+                            <ul class="card-text">
+                                <li><h4 class="card-title">{{item.title}}</h4></li>
+
+                                <li><a>{{item.condition}}</a></li>
+                                <li><h6>{{item.place.name}}</h6> <a href="">View in Maps</a> </li>
+                                <li><p>{{item.email}}</p></li>
+                                <li><p>{{item.description | limitTo : 100}}</p></li>
+
+
+                            </ul>
+                        </div>
+                        <!--<div class="card-footer">-->
+                        <!--<small>Date Created: {{item._id.getTimestamp()}}</small> *** Why doesn't this work?? ***-->
+                        <!--<button class="btn btn-info float-right btn-sm" ng-click="editBox = !editBox">-->
+                        <!--Edit-->
+                        <!--</button>-->
+                        <!--<button class="btn btn-warning float-right btn-sm"-->
+                        <!--ng-click="delete($index,item._id)">Delete-->
+                        <!--</button>-->
+                        <!--</div>-->
+                    </div>
+
+                </div>
+
+                <!--</div>-->
+
+                <!--<div class="row cards" ng-repeat="item in items | filter: post">-->
+                    <!--<br>-->
+                    <!--<div class="card card-outline-info mb-3">-->
+                        <!--<div class="card-deck">-->
+                            <!--<div class="card-block">-->
+                                <!--<img class="img-responsive" ng-repeat="photo in item.photos" ng-src="{{photo}}" alt="">-->
+                                <!--<h4 class="card-title">{{item.title}}</h4>-->
+                                <!--<p class="card-text">{{item.description}}</p>-->
+                                <!--<p class="card-text">-->
+                                    <!--<small class="text muted">{{item.condition}}</small>-->
+                                <!--</p>-->
+                                <!--<h6 class="card-text">{{item.place.name}}</h6>-->
+                                <!--<p class="card-text">{{item.email}}</p>-->
+                                <!--<button href="#" class="btn btn-xs btn-info" ng-click="favorite(item)"><span-->
+                                        <!--class="glyphicon glyphicon-heart"></span> Favorite-->
+                                <!--</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="row">-->
+                        <!--<div class="map col-sm-offset-3 col-sm-6">-->
+                            <!--<ui-gmap-google-map center="item.map.center" options="item.options" zoom="item.map.zoom"-->
+                                                <!--aria-label="Google map">-->
+                                <!--<ui-gmap-marker fit=true coords="item.marker.coords" idkey="item.marker.id">-->
+                                    <!--<ui-gmap-window>-->
+                                        <!--<div>{{item.marker.window.title}}</div>-->
+                                    <!--</ui-gmap-window>-->
+                                <!--</ui-gmap-marker>-->
+                            <!--</ui-gmap-google-map>-->
+                            <!--<br>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;<button type="button" ng-click="viewItem(selectedItem)" href="/item-details-modal.html">Details</button>&ndash;&gt;-->
                 <!--</div>-->
             </div>
-
-            <!--<div class="row cards" ng-repeat="item in items | filter: post">-->
-            <!--<br>-->
-            <!--<div class="card card-outline-info mb-3">-->
-            <!--<div class="card-deck">-->
-            <!--<div class="card-block">-->
-            <!--<img class="img-responsive" ng-repeat="photo in item.photos" ng-src="{{photo}}" alt="">-->
-            <!--<h4 class="card-title">{{item.title}}</h4>-->
-            <!--<p class="card-text">{{item.description}}</p>-->
-            <!--<p class="card-text">-->
-            <!--<small class="text muted">{{item.condition}}</small>-->
-            <!--</p>-->
-            <!--<h6 class="card-text">{{item.place.name}}</h6>-->
-            <!--<p class="card-text">{{item.email}}</p>-->
-            <!--<button href="#" class="btn btn-xs btn-info"  ng-click="favorite(item)"><span class="glyphicon glyphicon-heart"></span> Favorite</button>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<div class="row">-->
-            <!--<div class="map col-sm-offset-3 col-sm-6">-->
-            <!--<ui-gmap-google-map center="item.map.center" options="item.options" zoom="item.map.zoom" aria-label="Google map">-->
-            <!--<ui-gmap-marker fit=true coords="item.marker.coords" idkey="item.marker.id">-->
-            <!--<ui-gmap-window>-->
-            <!--<div>{{item.marker.window.title}}</div>-->
-            <!--</ui-gmap-window>-->
-            <!--</ui-gmap-marker>-->
-            <!--</ui-gmap-google-map>-->
-            <!--<br>-->
-            <!--</div>-->
-<!--         </div>
-    </div>
-</div> -->
-
-    <div class="row cards" ng-repeat="item in items | filter: post">
-        <br>
-        <div class="card card-outline-info mb-3">
-            <div class="card-deck">
-                <div class="card-block">
-                    <img class="img-responsive" ng-repeat="photo in item.photos" ng-src="{{photo}}" alt="">
-                    <h4 class="card-title">{{item.title}}</h4>
-                    <p class="card-text">{{item.description}}</p>
-                    <p class="card-text">
-                        <small class="text muted">{{item.condition}}</small>
-                    </p>
-                    <h6 class="card-text">{{item.place.name}}</h6>
-                    <p class="card-text">{{item.email}}</p>
-                    <button href="#" class="btn btn-xs btn-info" ng-click="favorite(item)"><span
-                            class="glyphicon glyphicon-heart"></span> Favorite
-                    </button>
-                </div>
-            </div>
         </div>
-        <div class="row">
-            <div class="map col-sm-offset-3 col-sm-6">
-                <ui-gmap-google-map center="item.map.center" options="item.options" zoom="item.map.zoom"
-                                    aria-label="Google map">
-                    <ui-gmap-marker fit=true coords="item.marker.coords" idkey="item.marker.id">
-                        <ui-gmap-window>
-                            <div>{{item.marker.window.title}}</div>
-                        </ui-gmap-window>
-                    </ui-gmap-marker>
-                </ui-gmap-google-map>
-                <br>
-            </div>
-        </div>
-        <!--<button type="button" ng-click="viewItem(selectedItem)" href="/item-details-modal.html">Details</button>-->
     </div>
 </div>
-
