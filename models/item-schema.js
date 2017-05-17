@@ -27,7 +27,7 @@ var itemSchema = new Schema({
         type: String,
         required: true
     },
-    price: String,
+    price: Number,
     place: {
 		name: String,
 		lat: Number,
@@ -50,10 +50,10 @@ var itemSchema = new Schema({
         ref: "User",
         required: true
     },
-    // username: {
-    //     type: Schema.Types.string,
-    //     ref: "User"
-    // }   *** ask how to populate username ***
+    username: {
+        type: Schema.Types.String,
+        ref: "User"
+    }
 
 });
 

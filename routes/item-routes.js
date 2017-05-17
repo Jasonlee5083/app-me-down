@@ -83,7 +83,6 @@ itemRouter.route("/:itemId/favorites/")
             }
         })
     })
-<<<<<<< Updated upstream
 	.put(function (req, res) {
        Item.findByIdAndUpdate(req.params.itemId, {$pull: {"favoritedBy": req.user._id}}, function (err, item) {
            if(err) res.status(500).send(err);
@@ -100,22 +99,8 @@ itemRouter.route("/:itemId/favorites/")
             res.send(item);
         })
     })
-
+	
 	;
-=======
-
-    .put(function (req, res) {
-        Item.findByIdAndUpdate(req.params.itemId, req.body, {$pullAll: {"favoritedBy": req.user._id}}, function (err, item) {
-            if(err) res.status(500).send(err);
-            if(!item) res.status(404).send("Item not found.");
-            else {
-
-                res.send(item);
-            }
-        })
-    })
-
->>>>>>> Stashed changes
 
 
 module.exports = itemRouter;

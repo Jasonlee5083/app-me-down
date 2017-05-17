@@ -13,7 +13,7 @@ app.controller("itemModalInstanceController", ["$scope", "$timeout", "$uibModalI
 	$scope.submit = function (newItem) {
 		$uibModalInstance.close({newItem: newItem, images: $scope.dzMethods.getAllFiles()});
 	};
-	
+
 	$scope.cancel = function () {
 		$uibModalInstance.dismiss('closed');
 	};

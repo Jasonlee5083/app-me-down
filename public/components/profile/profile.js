@@ -22,24 +22,18 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
 
     itemService.getUsersItems().then(function (items) {
         $scope.items = items;
+        console.log(items)
     });
 
-    itemService.getFavorites().then(function (items) {
-        $scope.favorites = items;
+    itemService.getFavorites().then(function (favorites) {
+        $scope.favorites = favorites;
     });
 
-    $scope.deleteFavorite = function (index, item) {
-       itemService.removeFavorite(item).then(function (response) {
-           response.favoritedBy.splice(index, 1);
-           console.log(response.favoritedBy);
-           $scope.favorites.splice(index, 1);
-       })
-    }
+
 
     $scope.delete = function (index, id) {
 		console.log(id);
         itemService.removeItems(id).then(function () {
-//         $scope.items.splice($scope.items.indexOf(index), 1);
 	   $scope.items.splice(index, 1);
 
         })
@@ -52,18 +46,10 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
         })
     };
 
-    // itemService.getFavorites().then(function (items) {
-    //     $scope.favorites.push(items);
-    // })
+
 	$scope.deleteFavorite = function (index, item) {
       itemService.removeFavorite(item).then(function (response) {
-		  $scope.favoritesby=response.favoritedBy;
-		  
-          console.log($scope.favoritesby);
            $scope.favorites.splice(index, 1);
-		  $scope.favoritesby.splice(index, 1);
-		  console.log($scope.favoritesby);
-
       })
    }
 

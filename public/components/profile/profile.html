@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 profile">
-            <img class="profilePic" src="https://api.adorable.io/avatars/200/{{userService.currentUser.name }}.png" alt="Kittens" class="img-responsive">
+            <img class="profilePic img-responsive" src="https://api.adorable.io/avatars/200/{{userService.currentUser.name }}.png" alt="Kittens" >
             <h1>{{ userService.currentUser.name }}</h1>
             <hr>
             <h3>Change Password</h3>
@@ -21,66 +21,145 @@
         </div>
 
 
-        <div class="col-md-7 col-md-offset-1">
+        <div class="col-xs-8">
             <uib-tabset active="active">
                 <uib-tab index="0" heading="Posts">
                     <div class="row tabContent">
                         <div class="cards col-sm-6 col-md-4 col-lg-3" ng-repeat="item in items">
-                            <div class="card card-inverse card-success">
-                                <img class="card-img-top img-responsive"
-                                     ng-src="{{item.photos[0]}}">
-                                <!--<row>-->
-                                    <!--<div class="col-xs-4 col-xs-offset-4 item-price">${{item.price}}</div>-->
+                            <div class="card">
+                                <img class="card-img-top img-responsive" ng-src="{{item.photos[0]}}">
+                                <div class="row">
+                                    <div class="col-xs-4 col-xs-offset-4 item-price">${{item.price}}</div>
 
-                                <!--</row>-->
+                                </div>
                                 <div class="card-block">
                                     <!--<figure class="itemImage">-->
-                                        <img ng-src="https://api.adorable.io/avatars/50/{{userService.currentUser.name }}.png"
-                                             class="profile-avatar" alt="https://api.adorable.io/avatars/50/{{userService.currentUser.name }}.png">
+                                    <div class="col-xs-3 avatar-block">
+                                    <img ng-src="https://api.adorable.io/avatars/50/{{userService.currentUser.name }}.png"
+                                         class="avatar-block profile-avatar img-rounded"
+                                         alt="https://api.adorable.io/avatars/50/{{userService.currentUser.name }}.png">
+
+                                    <button class="btn btn-info float-right btn-sm avatar-block" ng-click="editBox = !editBox">
+                                        Edit
+                                    </button>
+                                    <button class="btn btn-warning float-right btn-sm avatar-block"
+                                            ng-click="delete($index,item._id)">Delete
+                                    </button>
+                                    </div>
                                     <!--</figure>-->
                                     <ul>
-                                        <li><h4 class="card-title">{{item.title}}</h4></li>
+                                        <li><h2 class="card-title">{{item.title}}</h2></li>
                                         <div class="meta card-text">
-                                            <li><a>{{item.condition}}</a></li>
+                                            <li>{{item.condition}}</li>
                                         </div>
                                         <div class="card-text">
-                                            <li><p>{{item.description}}</p></li>
+                                            <li>{{item.description | limitTo : 100}}</li>
                                         </div>
                                     </ul>
                                 </div>
-                                <div class="card-footer">
-                                    <small>Last updated 3 mins ago</small>
-                                    <button class="btn btn-info float-right btn-sm" ng-click="editBox = !editBox">
-                                        Edit
-                                    </button>
-                                    <button class="btn btn-warning float-right btn-sm"
-                                            ng-click="delete($index,item._id)">Delete
-                                    </button>
-                                </div>
+                                <!--<div class="card-footer">-->
+                                    <!--&lt;!&ndash;<small>Last updated 3 mins ago</small>&ndash;&gt;-->
+                                    <!--<button class="btn btn-info float-right btn-sm" ng-click="editBox = !editBox">-->
+                                        <!--Edit-->
+                                    <!--</button>-->
+                                    <!--<button class="btn btn-warning float-right btn-sm"-->
+                                            <!--ng-click="delete($index,item._id)">Delete-->
+                                    <!--</button>-->
+                                <!--</div>-->
                             </div>
 
                             <div ng-show="editBox">
                                 <form>
-                                    <input type="" placehoder="Category" ng-model="item.type">
-                                    <input type="" placehoder="Age Range" ng-model="item.ageRange">
-                                    <input type="text" placehoder="Title" ng-model="item.title">
-                                    <input type="file" placehoder="Photo" ng-model="item.photo">
-                                    <input type="text" placehoder="Description" ng-model="item.description">
-                                    <input type="" placehoder="Condition" ng-model="item.condition">
-                                    <button ng-click="edit($index, item); editBox = !editBox">Edit</button>
+                                    <input type="text" placeholder="Title" ng-model="item.title">
+                                    <input type="number" placeholder="Price" ng-model="item.price">
+                                    <input type="text" placeholder="Condition" ng-model="item.condition">
+                                    <input type="text" placeholder="Location" ng-model="item.place.name">
+                                    <input type="text" placeholder="Category" ng-model="item.type">
+                                    <input type="text" placeholder="Age Range" ng-model="item.ageRange">
+                                    <textarea type="text" placeholder="Description"
+                                              ng-model="item.description"></textarea>
+                                    <input type="file" placeholder="Photo" ng-model="item.photo">
+                                    <button class="btn" ng-click="edit($index, item); editBox = !editBox">Edit</button>
                                 </form>
                             </div>
                         </div>
                     </div>
 
                 </uib-tab>
-                <uib-tab index="1" heading="Favorites">
-                    <div class="card" ng-repeat="item in favorites">
-                        <div class="item item-text-wrap">
-                            {{item.photo}}
-                            <h3>{{ item.title}}</h3>
-                            <p>{{ item.description }}</p>
-                            <button class="btn btn-sm btn-warning" ng-click="deleteFavorite($index,item._id)">Delete</button>
+                <uib-tab index="1"  heading="Favorites">
+                        <div class="row tabContent">
+                            <div class="cards col-sm-6 col-md-4 col-lg-3" ng-repeat="item in favorites | filter: post">
+                                <div class="card">
+                                    <div class="row">
+                                        <img class="img-responsive card-img-top" ng-src="{{item.photos[0]}}" alt="">
+                                        <div class="row">
+                                            <div class="col-xs-4 col-xs-offset-4 item-price">${{item.price}}</div>
+
+                                        </div>
+                                        <div class="card-block">
+                                            <div class="avatar-block">
+                                                <img ng-src="https://api.adorable.io/avatars/50/{{item.username}}.png"
+                                                     class="profile-avatar img-rounded" alt="">
+                                                <p class="username">{{item.username}}</p>
+
+                                            </div>
+
+                                            <ul class="card-text">
+                                                <li><h4 class="card-title">{{item.title}}</h4></li>
+
+                                                <li><a>{{item.condition}}</a></li>
+                                                <li><h6>{{item.place.name}}</h6></li>
+                                                <li><p>{{item.email}}</p></li>
+                                                <li><p>{{item.description | limitTo : 100}}</p></li>
+
+
+
+                                        <!--</div>-->
+                                        <!--<div class="card-footer">-->
+                                        <button class="btn btn-sm btn-warning" ng-click="deleteFavorite($index,item._id)">Remove</button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <!--<div class="item item-text-wrap">-->
+                            <!--{{item.photo}}-->
+                            <!--<h3>{{ item.title}}</h3>-->
+                            <!--<p>{{ item.description }}</p>-->
+                        </div>
+                </uib-tab>
+                <uib-tab index="2" heading="Contact Me">
+                    <div flex layout="row" layout-align="center center">
+                        <div flex layout="row" layout-align="center center">
+                            <div flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" class="md-whiteframe-z2">
+                                <md-content class="md-padding">
+                                    <div flex-sm="100" flex-gt-sm="80" layout-sm="column">
+                                        <form name="contactForm" data-ng-submit="sendMail()">
+                                            <md-input-container>
+                                                <label>Name:</label>
+                                                <input ng-model="contactName" required>
+                                            </md-input-container>
+                                            <md-input-container flex>
+                                                <label>Email:</label>
+                                                <input type="email" ng-model="contactEmail" required>
+                                            </md-input-container>
+                                            <br>
+
+                                            <md-input-container>
+                                                <label>Message:</label>
+                                                <textarea ng-model="mail.message" columns="10" md-maxlength="150"
+                                                          required></textarea>
+                                            </md-input-container>
+                                            <br>
+
+                                            <md-button type="submit" class="md-primary"
+                                                       ng-class="{'md-raised md-hue-1': (contactForm.$dirty && contactForm.$valid) }"
+                                                       aria-label="Save Project" ng-click="send(email);">Send
+                                            </md-button>
+                                        </form>
+                                    </div>
+                                </md-content>
+                            </div>
                         </div>
                     </div>
                 </uib-tab>

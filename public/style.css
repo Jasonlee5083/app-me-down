@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC|Playfair+Display|Raleway');
 
+/*.headerImg {*/
+	/*background-image: url("components/img/trampoline-2227668_1280.jpg");*/
+	/*background-size:cover;*/
+	/*background-attachment: fixed;*/
+	/*background-repeat: no-repeat;*/
+	/*z-index: 1;*/
+/*}*/
 
 .angular-google-map-container { height: 400px;}
 .map {
@@ -21,16 +28,27 @@
 	border-radius: 10px;
 }
 
+.profile-avatar {
+	display: block;
+	width: 50px;
+	height: 50px;
 
-h3 {
-	text-align: center;
-	font-family: Playfair, serif;
-	color: #4A4A4A;
+	/*border-radius: 50%;*/
+	/*padding: 5px;*/
 }
 
-h1 {
-	font-family: Raleway, sans-serif;
-	color: #4A4A4A;
+.avatar-block {
+	margin-left: 5px;
+	margin-bottom: 3px;
+}
+
+.avatar-block .username {
+	text-align: center;
+}
+
+.avatar-block .btn {
+	/*border-radius: 50%;*/
+	width: 50px;
 }
 
 .tabs {
@@ -39,6 +57,7 @@ h1 {
 
 .card {
 	font-size: 1em;
+	font-family: Raleway, sans-serif;
 	overflow: hidden;
 	padding: 0;
 	margin-top: 5px;
@@ -46,9 +65,9 @@ h1 {
 	border-radius: 4px;
 	box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 	width: 100%;
-	max-height: 400px;
+	max-height: 600px;
 	min-width: 200px;
-	background-color: #8BC34A;
+	background-color: #F1FFE1;
 }
 
 .card-block {
@@ -73,28 +92,34 @@ h1 {
 .item-price {
 	position: relative;
 	font-family: Raleway, sans-serif;
-	color: white;
-	background-color: rgba(0,0,0,.19);
+	font-size: 1.3em;
+	color: #ffffff;
+	background-color: rgba(0,0,0,.25);
 	border: 2px solid white;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
-	bottom: 30px;
+	bottom: 35px;
+	z-index: 3;
+}
 
+h3 {
+	text-align: center;
+	font-family: Playfair, serif;
+	color: #4A4A4A;
+}
+
+h1 {
+	font-family: Raleway, sans-serif;
+	color: #4A4A4A;
 }
 
 .card-title {
 	font-size: 1.28571429em;
 	font-weight: 700;
 	line-height: 1.2857em;
-	color: #4A4A4A;
+	color: #4a4a4a;
 	text-align: left;
-}
-
-.card-text {
-	/*clear: both;*/
-	margin-top: .5em;
-	color: rgba(0, 0, 0, .68);
 }
 
 .card-footer {
@@ -107,10 +132,6 @@ h1 {
 	color: rgba(0, 0, 0, .4);
 	border-top: 1px solid rgba(0, 0, 0, .05) !important;
 	background: #F1FFE1;
-}
-
-.card-inverse .btn {
-	border: 1px solid rgba(0, 0, 0, .05);
 }
 
 /*.itemImage {*/
@@ -126,20 +147,15 @@ h1 {
 	/*border-radius: 50%;*/
 /*}*/
 
-.profile-avatar {
-	/*display: block;*/
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	/*padding: 5px;*/
-}
 
-.profilePic {
+.profile-pic {
 	border-radius: 5px;
+	padding: 5px;
 }
 
 .username {
 	vertical-align: sub;
+	padding: 5px;
 }
 
 .profile-inline {
@@ -160,12 +176,12 @@ h1 {
 
 .meta {
 	font-size: 1em;
-	color: rgba(0, 0, 0, .4);
+	color: rgba(0, 0, 0, .6);
 }
 
 .meta a {
 	text-decoration: none;
-	color: rgba(0, 0, 0, .4);
+	color: rgb(74, 74, 74);
 }
 
 .meta a:hover {
@@ -178,7 +194,23 @@ ul {
 
 .tabContent {
 	padding: 25px;
-	background-color: #F1FFE1;
+	background-color: #ffffff
+;
+	color: black;
+}
+
+
+/*body {*/
+	/*color: black !important;*/
+/*}*/
+.card-text {
+	/*clear: both;*/
+	margin-top: .5em;
+	color: black;
+}
+
+.favorites p {
+	margin: 5px;
 }
 /*rgba(179,242,135,.3)*/
 
