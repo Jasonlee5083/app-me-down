@@ -47,7 +47,7 @@ app.service("UserService", ["$http", "$location", "TokenService", "$localStorage
     this.login = function (user) {
         return $http.post("/auth/login", user).then(function (response) {
             TokenService.setToken(response.data.token);
-            $localStorage.user = response.data.user
+            $localStorage.user = response.data.user;
             return response;
         });
     };

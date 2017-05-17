@@ -39,7 +39,7 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
 	};
 	this.mapService = function (item) {
 
-	}
+	};
 
     this.getUsersItems = function () {
         return $http.get("/api/items?user=currentUser").then(function (response) {
@@ -48,14 +48,6 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
             alert("Error " + response.status + ": " + response.statusText);
         });
     };
-
-	this.searchItems = function () {
-		return $http.get("/api/items?" + "").then(function (response) {
-            return response.data;
-        }, function (response) {
-			alert("Error " + response.status + ": " + response.statusText);
-		});
-	};
 
     this.getFavorites = function () {
         return $http.get("/api/items?favoritedBy=currentUser").then(function (response) {
@@ -70,19 +62,12 @@ app.service("itemService", ["$http", "Upload", "mapService", function ($http, Up
     		return response.data;
 		})
 	};
-	
-	this.removeFavorite = function (item) {
-       return $http.put("/api/items/" + item + "/favorites/").then(function (response) {
-           return response.data;
-        });
-    };
-	
-//		this.removeFavorite = function (item) {
-//       return $http.delete("/api/items/" + item + "/favorites/").then(function (response) {
-//           return response.data;
-//        });
-//    };
-	
+
+    this.removeFavorite = function (item) {
+    	return $http.put("/api/items/" + item + "/favorites/").then(function (response) {
+    		return response.data;
+		});
+	};
 }]);
 
 // Google Map API
@@ -102,7 +87,7 @@ app.service("mapService", function ($http) {
 		});
 	}
 
-})
+});
 
 
 

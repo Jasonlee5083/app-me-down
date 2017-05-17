@@ -12,7 +12,7 @@ emailRouter.post("/send-email", function (req, res) {
         auth: {
             api_key: "AtPkigX1RkaxQ_hLRFGuOg"
         }
-    }
+    };
     var mailer = nodemailer.createTransport(sgTransport(options));
     mailer.sendMail(req.body, function (err, info) {
         if(err) {

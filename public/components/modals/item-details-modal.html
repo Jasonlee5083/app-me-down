@@ -1,0 +1,55 @@
+<uib-tabset active="active">
+    <uib-tab index="0" heading="Photos">
+        <div class="row tabContent">
+            <img class="img-responsive" ng-repeat="photo in item.photos" ng-src="{{photo}}" alt="">
+        </div>
+    </uib-tab>
+    <uib-tab index="1" heading="Post">
+        <div>
+            {{item.title}}
+            {{item.condition}}
+            {{item.description}}
+        </div>
+    </uib-tab>
+    <uib-tab index="2" heading="Contact Me">
+        <div flex layout="row" layout-align="center center">
+            <div flex layout="row" layout-align="center center">
+                <div flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" class="md-whiteframe-z2">
+                    <md-content class="md-padding">
+                        <div flex-sm="100" flex-gt-sm="80" layout-sm="column">
+                            <form name="contactForm" data-ng-submit="sendMail()">
+                                <md-input-container>
+                                    <label>Name:</label>
+                                    <input ng-model="contactName" required>
+                                </md-input-container>
+                                <md-input-container flex>
+                                    <label>Email:</label>
+                                    <input type="email" ng-model="contactEmail" required>
+                                </md-input-container>
+                                <br>
+
+                                <md-input-container>
+                                    <label>Message:</label>
+                                    <textarea ng-model="mail.message" columns="10" md-maxlength="150"
+                                              required></textarea>
+                                </md-input-container>
+                                <br>
+
+                                <md-button type="submit" class="md-primary"
+                                           ng-class="{'md-raised md-hue-1': (contactForm.$dirty && contactForm.$valid) }"
+                                           aria-label="Save Project" ng-click="send(email);">Send
+                                </md-button>
+                            </form>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+</uib-tabset>
+</div>
+</script>
+
+
+
+
