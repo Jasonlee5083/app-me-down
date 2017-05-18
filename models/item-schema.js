@@ -47,13 +47,12 @@ var itemSchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true
-    },
-    username: {
-        type: Schema.Types.String,
         ref: "User"
     }
+    // username: {
+    //     type: Schema.Types.String,
+    //     ref: "User"
+    // }
 
 });
 

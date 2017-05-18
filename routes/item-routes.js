@@ -3,6 +3,21 @@ var itemRouter = express.Router();
 var Item = require("../models/item-schema");
 var multer = require("multer");
 
+// itemRouter.route("/")
+//     // .get(function (req, res) {
+//     //     var filter = {};
+//     //     if (req.query.user === "currentUser") {
+//     //         filter.user = req.user._id;
+//     //     }
+//     //     if(req.query.favoritedBy === "currentUser") {
+//     //         filter.favoritedBy = req.user._id;
+//     //     }
+//     //     Item.find(filter, function (err, items) {
+//     //         if (err) res.status(500).send(err);
+//     //         res.send(items)
+//     //     });
+//     // });
+
 itemRouter.route("/")
     .get(function (req, res) {
         var filter = {};
@@ -12,10 +27,12 @@ itemRouter.route("/")
         if(req.query.favoritedBy === "currentUser") {
             filter.favoritedBy = req.user._id;
         }
-        Item.find(filter, function (err, items) {
-            if (err) res.status(500).send(err);
-            res.send(items)
-        });
+        Item.find(filter)
+            .populate("user")
+            .exec(function (err, items) {
+                if (err) res.status(500).send(err);
+                res.send(items)
+            });
     });
 
 // Setting up multer settings for images post
@@ -45,7 +62,9 @@ itemRouter.route("/")
 
             item.save(function (err, newitem) {
                 if (err) res.status(500).send(err);
-                res.status(201).send(newitem);
+                Item.populate(newitem, {path: "user"}, function(err, item) {
+                    res.status(201).send(newitem);
+                })
             });
         });
 

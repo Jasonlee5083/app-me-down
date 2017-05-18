@@ -19,7 +19,7 @@ var userSchema = new Schema({
         type: String,
         required:true,
         unique: true,
-        match: "shedamoe@gmail.com"
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/, "Please fill a valid email address"]
     },
     userImg: String,
     admin: {

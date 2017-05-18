@@ -17,6 +17,10 @@
 	align-items: center;
 }
 
+.cards {
+	height: 500px;
+}
+
 .profile {
 	border: 3px double #C7EEA0;
 	background-color: #F1FFE1;
@@ -194,9 +198,9 @@ ul {
 
 .tabContent {
 	padding: 25px;
-	background-color: #ffffff
-;
+	background-color: #ffffff;
 	color: black;
+	overflow: auto
 }
 
 

@@ -1,33 +1,36 @@
 var app = angular.module("appMeDown");
 
-app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemService", "mapService", function ($scope, $log, $http, $uibModal, itemService, mapService) {
+app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemService", "mapService", "userService", function ($scope, $log, $http, $uibModal, itemService, mapService, userService) {
 
     $scope.favoriteItems = [];
     $scope.searchedItems = [];
 	$scope.selectedItem = [];
+	$scope.user = [];
+	$scope.items = [];
 
-    // $scope.viewItem = function (selectedItem) {
-		// console.log("modal")
-		// var modalInstance = $uibModal.open({
-		// 	templateUrl: "item-details-modal.html",
-		// 	controller: "modalDetailInstanceController",
-		// 	$scope: scope.selectedItem,
-		// 	resolve: {
-		// 		item: function () {
-		// 			return selectedItem;
-		// 		}
-		// 	}
-		// });
-    //
-    //     modalInstance.result
-    //         .then(function (selectedItem) {
-    //             return itemService.getItems(selectedItem)
-    //         })
-    //         .then(function () {
-    //             scope.selectedItem = selectedItem;
-    //             console.log(selectedItem);
-    //         })
-    // };
+    $scope.viewItemDeets = function (selectedItem) {
+		console.log("modal")
+		var modalInstance = $uibModal.open({
+			templateUrl: "item-details-modal.html",
+			controller: "modalDetailInstanceController",
+			$scope: $scope,
+
+			resolve: {
+				item: function () {
+					return selectedItem;
+				}
+			}
+		});
+
+        modalInstance.result
+            .then(function (selectedItem) {
+                return itemService.getItems(selectedItem)
+            })
+            .then(function () {
+                scope.selectedItem = selectedItem;
+                console.log(selectedItem);
+            })
+    };
 
     $scope.favorite = function (item) {
         itemService.postFavorite(item).then(function (response) {
@@ -117,11 +120,19 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
                     window: {
                         title: newItem.place.name
                     }
-                };
+                }
+
                 console.log(newItem);
                 $scope.items.push(newItem);
             })
     };
+
+
+
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+    })
+
 
 
 }]);

@@ -37,6 +37,7 @@ app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $lo
 app.config(['uiGmapGoogleMapApiProvider', function (GoogleMapApiProviders) {
 
 	GoogleMapApiProviders.configure({
-		china: true
-	});
+		china: true,
+        key: "AIzaSyAFrB1ToTkq4a-BNsaGUf_zgtR_Rb3Aa-0&"
+    });
     }]);
