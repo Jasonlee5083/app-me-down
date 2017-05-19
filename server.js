@@ -17,9 +17,9 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use("/api", expressJwt({secret: config.secret}).unless({path: ['/api/items'], method: 'GET'}));
-
+app.use("/api", expressJwt({secret: config.secret}).unless({path: [{url: '/api/items', method: "GET"}]}));
 app.use("/api/items", require("./routes/item-routes"));
+app.use("/api/users", require("./routes/user-routes"));
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "uploads")));
