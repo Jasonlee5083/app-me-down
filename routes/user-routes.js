@@ -15,6 +15,6 @@ userRoutes.route("/")
 
                 return res.send(user.username)
             });
-    })
+    });
 
 module.exports = userRoutes;

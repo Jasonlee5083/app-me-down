@@ -1,9 +1,9 @@
-var mongoose = require("mongoose");  
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var bcrypt = require("bcrypt");
 
 
-var userSchema = new Schema({  
+var userSchema = new Schema({
     name: String,
     username: {
         type: String,
@@ -17,9 +17,9 @@ var userSchema = new Schema({
     },
     email: {
         type: String,
-        required:true,
+        required: true,
         unique: true,
-        match: "shedamoe@gmail.com"
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/, "Please fill a valid email address"]
     },
     userImg: String,
     admin: {
@@ -28,7 +28,7 @@ var userSchema = new Schema({
     }
 });
 
-userSchema.pre("save", function (next) {  
+userSchema.pre("save", function (next) {
     var user = this;
     if (!user.isModified("password")) return next();
 
@@ -40,14 +40,14 @@ userSchema.pre("save", function (next) {
     });
 });
 
-userSchema.methods.checkPassword = function(passwordAttempt, callback) {  
+userSchema.methods.checkPassword = function (passwordAttempt, callback) {
     bcrypt.compare(passwordAttempt, this.password, function (err, isMatch) {
         if (err) return callback(err);
         callback(null, isMatch);
     });
 };
 
-userSchema.methods.withoutPassword = function () {  
+userSchema.methods.withoutPassword = function () {
     var user = this.toObject();
     delete user.password;
     return user;
