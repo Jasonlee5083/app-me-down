@@ -4,7 +4,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var emailSchema = new Schema ({
+var emailSchema = new Schema({
     from: String,
     to: String,
     subject: String,

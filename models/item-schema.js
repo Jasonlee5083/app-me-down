@@ -29,10 +29,10 @@ var itemSchema = new Schema({
     },
     price: Number,
     place: {
-		name: String,
-		lat: Number,
-		lng: Number
-	},
+        name: String,
+        lat: Number,
+        lng: Number
+    },
     email: {
         type: String,
         required: true

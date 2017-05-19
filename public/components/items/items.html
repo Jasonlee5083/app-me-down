@@ -1,17 +1,17 @@
 <div class="container-fluid">
 
-    <!--<div class="col-xs-12 headerImg"></div>-->
     <div class="row">
-        <!--<div class="col-xs-12">-->
+
+        <!--Navbar-->
+
         <div class="navbar-form navbar-left col-md-4 col-lg-2">
             <div>
-                <button class="btn btn-outline-info btn-lg" ng-click="showForm()">Sell Something!</button>
+                <button class="btn btn-outline-info btn-default btn-lg" ng-show="UserService.isAuthenticated()" ng-click="showForm()">Sell Something!</button>
             </div>
             <br>
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search" ng-model="post">
             </div>
-            <!--<button type="submit" class="btn btn-default" ng-click="search = !search">Submit</button>-->
 
             <div class="categories">
                 <div class="card-block">
@@ -46,12 +46,13 @@
             </div>
         </div>
 
-        <!--</form>-->
+        <!--Item cards-->
 
         <div class="row tabContent">
             <div class="cards col-sm-6 col-md-4 col-lg-2" ng-repeat="item in items | filter: post">
                 <div class="card">
                     <div class="row">
+
                         <img class="img-responsive card-img-top" ng-src="{{item.photos[0]}}" alt="">
                         <div class="row">
                             <div class="col-xs-4 col-xs-offset-4 item-price">${{item.price}}</div>
@@ -71,8 +72,8 @@
                             <ul class="card-text">
                                 <li><h4 class="card-title">{{item.title}}</h4></li>
 
-                                <li><a>{{item.condition}}</a></li>
-                                <li> <a href="" data-toggle="modal" data-target="#myModal">{{item.place.name}}</a> </li>
+                                <li><p><strong>Condition:</strong> {{item.condition}}</p></li>
+                                <li><p>{{item.place.name}}  <button class="btn btn-sm btn-default" type="button" ng-click="viewItem(item)" href="/item-details-modal.html"><span class="glyphicon glyphicon-map-marker"></span></button>  </p></li>
                                 <li><p>{{item.email}}</p></li>
                                 <li><p>{{item.description | limitTo : 100}}</p></li>
 

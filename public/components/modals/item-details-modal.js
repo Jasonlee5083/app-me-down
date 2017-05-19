@@ -10,14 +10,19 @@ app.directive("itemDetailModal", [function () {
     };
 }]);
 
-app.controller("modalDetailInstanceController", ["$scope", "$timeout", "$uibModalInstance", "itemService", "mapService", function ($scope, $timeout, $uibModalInstance, itemService, mapService) {
+app.controller("modalDetailInstanceController", ["$scope", "$timeout", "$uibModalInstance", "itemService", "mapService", "item", function ($scope, $timeout, $uibModalInstance, itemService, mapService, item) {
 
-    $scope.title = item.type;
-    $scope.condition = item.condition;
-    $scope.description = item.description;
+    $scope.item = item;
+    $scope.render = true;
+
+    $scope.ok = function () {
+        $uibModalInstance.close();
+    };
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('closed');
     };
+
+
 
 }]);
