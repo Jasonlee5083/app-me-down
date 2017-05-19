@@ -29,10 +29,10 @@ var itemSchema = new Schema({
     },
     price: Number,
     place: {
-		name: String,
-		lat: Number,
-		lng: Number
-	},
+        name: String,
+        lat: Number,
+        lng: Number
+    },
     email: {
         type: String,
         required: true
@@ -47,13 +47,12 @@ var itemSchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true
-    },
-    username: {
-        type: Schema.Types.String,
         ref: "User"
     }
+    // username: {
+    //     type: Schema.Types.String,
+    //     ref: "User"
+    // }
 
 });
 
