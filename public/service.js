@@ -44,7 +44,7 @@ app.service("itemService", ["$http", "Upload", "mapService", "userService", func
     };
 
     this.getUsersItems = function () {
-        return $http.get("/api/items?user=currentUser").then(function (response) {
+        return $http.get("/api/users/my/items").then(function (response) {
             return response.data;
         }, function (response) {
             alert("Error " + response.status + ": " + response.statusText);
@@ -52,7 +52,7 @@ app.service("itemService", ["$http", "Upload", "mapService", "userService", func
     };
 
     this.getFavorites = function () {
-        return $http.get("/api/items?favoritedBy=currentUser").then(function (response) {
+        return $http.get("/api/users/my/favorites").then(function (response) {
             return response.data;
         }, function (response) {
             alert("Error " + response.status + ": " + response.statusText);

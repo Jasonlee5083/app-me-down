@@ -22,7 +22,6 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
 
     itemService.getUsersItems().then(function (items) {
         $scope.items = items;
-        console.log(items)
     });
 
     itemService.getFavorites().then(function (favorites) {
