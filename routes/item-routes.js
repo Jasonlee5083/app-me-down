@@ -3,20 +3,6 @@ var itemRouter = express.Router();
 var Item = require("../models/item-schema");
 var multer = require("multer");
 
-// itemRouter.route("/")
-//     // .get(function (req, res) {
-//     //     var filter = {};
-//     //     if (req.query.user === "currentUser") {
-//     //         filter.user = req.user._id;
-//     //     }
-//     //     if(req.query.favoritedBy === "currentUser") {
-//     //         filter.favoritedBy = req.user._id;
-//     //     }
-//     //     Item.find(filter, function (err, items) {
-//     //         if (err) res.status(500).send(err);
-//     //         res.send(items)
-//     //     });
-//     // });
 
 itemRouter.route("/")
     .get(function (req, res) {
@@ -61,7 +47,7 @@ itemRouter.route("/")
             item.user = req.user;
 
             item.save(function (err, newitem) {
-                if (err) res.status(500).send(err);
+                if (err) return res.status(500).send(err);
                 Item.populate(newitem, {path: "user"}, function(err, item) {
                     res.status(201).send(newitem);
                 })
@@ -70,10 +56,10 @@ itemRouter.route("/")
 
 itemRouter.route("/:itemId")
     .get(function (req, res) {
-        //			if(req.querry.favorite === true
+        //			if(req.query.favorite === true
         Item.findById(req.params.itemId, function (err, item) {
-            if (err) res.status(500).send(err);
-            if (!item) res.status(404).send("No item found.");
+            if (err) return res.status(500).send(err);
+            if (!item) return res.status(404).send("No item found.");
             else res.send(item);
         });
     })
@@ -81,13 +67,13 @@ itemRouter.route("/:itemId")
         Item.findByIdAndUpdate(req.params.itemId, req.body, {
             new: true
         }, function (err, item) {
-            if (err) res.status(500).send(err);
+            if (err) return res.status(500).send(err);
             res.send(item);
         });
     })
     .delete(function (req, res) {
         Item.findByIdAndRemove(req.params.itemId, function (err, item) {
-            if (err) res.status(500).send(err);
+            if (err) return res.status(500).send(err);
             res.send(item);
         })
     });
@@ -95,8 +81,8 @@ itemRouter.route("/:itemId")
 itemRouter.route("/:itemId/favorites/")
     .post(function (req, res) {
         Item.findByIdAndUpdate(req.params.itemId, {$addToSet: {"favoritedBy": req.user._id}}, {new: true}, function (err, item) {
-            if (err) res.status(500).send(err);
-            if (!item) res.status(404).send("Item not found.");
+            if (err) return res.status(500).send(err);
+            if (!item) return res.status(404).send("Item not found.");
             else {
                 res.send(item);
             }
@@ -104,8 +90,8 @@ itemRouter.route("/:itemId/favorites/")
     })
 	.put(function (req, res) {
        Item.findByIdAndUpdate(req.params.itemId, {$pull: {"favoritedBy": req.user._id}}, function (err, item) {
-           if(err) res.status(500).send(err);
-           if(!item) res.status(404).send("Item not found.");
+           if(err) return res.status(500).send(err);
+           if(!item) return res.status(404).send("Item not found.");
            else {
 
                res.send(item);
@@ -114,7 +100,7 @@ itemRouter.route("/:itemId/favorites/")
    })
 	.delete(function (req, res) {
         Item.findByIdAndRemove(req.params.itemId, function (err, item) {
-            if (err) res.status(500).send(err);
+            if (err) return res.status(500).send(err);
             res.send(item);
         })
     })
