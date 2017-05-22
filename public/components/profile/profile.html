@@ -32,7 +32,7 @@
                                     <div class="col-xs-4 col-xs-offset-4 item-price">${{item.price}}</div>
 
                                 </div>
-                                <div class="card-block">
+                                <div class="card-block" ng-hide="editBox">
                                     <!--<figure class="itemImage">-->
                                     <div class="col-xs-3 avatar-block">
                                     <img ng-src="https://api.adorable.io/avatars/50/{{userService.currentUser.name }}.png"
@@ -66,22 +66,27 @@
                                             <!--ng-click="delete($index,item._id)">Delete-->
                                     <!--</button>-->
                                 <!--</div>-->
+                                <div ng-show="editBox">
+                                    <form>
+                                        <input type="text" placeholder="Title" ng-model="item.title">
+                                        <input type="number" placeholder="Price" ng-model="item.price">
+                                        <input type="text" placeholder="Condition" ng-model="item.condition">
+                                        <input type="text" placeholder="Location" ng-model="item.place.name">
+                                        <input type="text" placeholder="Category" ng-model="item.type">
+                                        <input type="text" placeholder="Age Range" ng-model="item.ageRange">
+                                        <textarea type="text" placeholder="Description"
+                                                  ng-model="item.description"></textarea>
+                                        <input type="file" placeholder="Photo" ng-model="item.photo">
+                                        <button class="btn btn-info" ng-click="edit($index, item); editBox = !editBox">Save</button>
+                                    </form>
+
+
+
+
+                                </div>
                             </div>
 
-                            <div ng-show="editBox">
-                                <form>
-                                    <input type="text" placeholder="Title" ng-model="item.title">
-                                    <input type="number" placeholder="Price" ng-model="item.price">
-                                    <input type="text" placeholder="Condition" ng-model="item.condition">
-                                    <input type="text" placeholder="Location" ng-model="item.place.name">
-                                    <input type="text" placeholder="Category" ng-model="item.type">
-                                    <input type="text" placeholder="Age Range" ng-model="item.ageRange">
-                                    <textarea type="text" placeholder="Description"
-                                              ng-model="item.description"></textarea>
-                                    <input type="file" placeholder="Photo" ng-model="item.photo">
-                                    <button class="btn" ng-click="edit($index, item); editBox = !editBox">Edit</button>
-                                </form>
-                            </div>
+
                         </div>
                     </div>
 
@@ -98,9 +103,9 @@
                                         </div>
                                         <div class="card-block">
                                             <div class="avatar-block">
-                                                <img ng-src="https://api.adorable.io/avatars/50/{{item.user.name}}.png"
+                                                <img ng-src="https://api.adorable.io/avatars/50/{{item.user}}.png"
                                                      class="profile-avatar img-rounded" alt="">
-                                                <p class="username">{{item.user.username}}</p>
+                                                <!--<p class="username">{{item.user.username}}</p>-->
 
                                             </div>
 
@@ -110,7 +115,7 @@
                                                 <li><a>{{item.condition}}</a></li>
                                                 <li><h6>{{item.place.name}}</h6></li>
                                                 <li><p>{{item.email}}</p></li>
-                                                <li><p>{{item.description | limitTo : 100}}</p></li>
+                                                <li><p>{{item.description | limitTo : 80}}</p></li>
 
 
 

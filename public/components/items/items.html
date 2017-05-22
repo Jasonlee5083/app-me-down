@@ -6,7 +6,7 @@
 
         <div class="navbar-form navbar-left col-md-4 col-lg-2">
             <div>
-                <button class="btn btn-outline-info btn-default btn-lg" ng-show="UserService.isAuthenticated()" ng-click="showForm()">Sell Something!</button>
+                <button class="btn btn-outline-info btn-default btn-lg" ng-show="AuthService.isAuthenticated()" ng-click="showForm()">Sell Something!</button>
             </div>
             <br>
             <div class="form-group">
@@ -49,7 +49,7 @@
         <!--Item cards-->
 
         <div class="row tabContent">
-            <div class="cards col-sm-6 col-md-4 col-lg-2" ng-repeat="item in items | filter: post">
+            <div class="cards col-sm-6 col-md-4 col-lg-3" ng-repeat="item in items | filter: post">
                 <div class="card">
                     <div class="row">
 
@@ -60,7 +60,7 @@
                         </div>
                         <div class="card-block">
                             <div class="avatar-block">
-                                <img ng-src="https://api.adorable.io/avatars/50/{{item.user.name}}.png"
+                                <img ng-src="https://api.adorable.io/avatars/50/{{item.user.username}}.png"
                                      class="profile-avatar img-rounded" alt="">
                                 <p class="username">{{item.user.username}}</p>
 

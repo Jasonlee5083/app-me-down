@@ -27,7 +27,7 @@ app.service("itemService", ["$http", "Upload", "mapService", "userService", func
 
     this.removeItems = function (id) {
         return $http.delete("/api/items/" + id).then(function (response) {
-            return "you item has been deleted"
+            return "your item has been deleted"
         });
     };
 
@@ -94,6 +94,7 @@ app.service("mapService", function ($http) {
 app.service("userService", function ($http) {
 
     this.getUser = function (user) {
+
         return $http.get("/api/items").then(function (response) {
             console.log(response.data);
             return response.data;

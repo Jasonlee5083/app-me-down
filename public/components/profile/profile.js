@@ -3,16 +3,17 @@
  */
 var app = angular.module("appMeDown");
 
-app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStorage", "UserService", "itemService", function ($scope, $uibModal, $log, $localStorage, UserService, itemService) {
+app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStorage", "AuthService", "itemService", function ($scope, $uibModal, $log, $localStorage, AuthService, itemService) {
     $scope.items = [];
+    $scope.user = [];
     $scope.favorites = [];
 	$scope.favoritesby = [];
 
 
-    $scope.userService = UserService;
+    $scope.userService = AuthService;
     $scope.changePassword = function (passwords) {
         if (passwords.newPassword === passwords.newPasswordRepeat) {
-            UserService.changePassword(passwords.newPassword).then(function(response) {
+            AuthService.changePassword(passwords.newPassword).then(function(response) {
                 $scope.passwords = {};
             })
         } else {
@@ -21,6 +22,7 @@ app.controller("profileController", ["$scope", "$uibModal", "$log", "$localStora
     };
 
     itemService.getUsersItems().then(function (items) {
+        console.log(items)
         $scope.items = items;
     });
 

@@ -1,5 +1,5 @@
 var app = angular.module("appMeDown.Auth");
 
-app.controller("LogoutController", ["UserService", function (UserService) {
-    UserService.logout();
+app.controller("LogoutController", ["AuthService", function (AuthService) {
+    AuthService.logout();
 }]);

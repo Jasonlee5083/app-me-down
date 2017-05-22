@@ -1,9 +1,9 @@
 var app = angular.module("appMeDown.Auth");
 
-app.controller("LoginController", ["$scope", "$location", "UserService", function ($scope, $location, UserService) {
+app.controller("LoginController", ["$scope", "$location", "AuthService", function ($scope, $location, AuthService) {
 
     $scope.login = function (user) {
-        UserService.login(user).then(function (response) {
+        AuthService.login(user).then(function (response) {
             $location.path("/home");
         }, function (response) {
             alert(response.data.message);

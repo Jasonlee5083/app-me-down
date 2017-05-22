@@ -10,7 +10,7 @@ itemRouter.route("/")
         if (req.query.user === "currentUser") {
             filter.user = req.user._id;
         }
-        if(req.query.favoritedBy === "currentUser") {
+        if (req.query.favoritedBy === "currentUser") {
             filter.favoritedBy = req.user._id;
         }
         Item.find(filter)
@@ -39,20 +39,20 @@ var upload = multer({storage: storage}).any();
 
 itemRouter.route("/")
     .post(upload, function (req, res) {
-            var filenames = req.files.map(function(file) {
-                return file.filename;
-            });
-            var item = new Item(req.body.data);
-            item.photos = filenames;
-            item.user = req.user;
-
-            item.save(function (err, newitem) {
-                if (err) return res.status(500).send(err);
-                Item.populate(newitem, {path: "user"}, function(err, item) {
-                    res.status(201).send(newitem);
-                })
-            });
+        var filenames = req.files.map(function (file) {
+            return file.filename;
         });
+        var item = new Item(req.body.data);
+        item.photos = filenames;
+        item.user = req.user;
+        console.log(req.user);
+        item.save(function (err, newitem) {
+            if (err) return res.status(500).send(err);
+            Item.populate(newitem, {path: "user"}, function (err, item) {
+                res.status(201).send(newitem);
+            })
+        });
+    });
 
 itemRouter.route("/:itemId")
     .get(function (req, res) {
@@ -88,24 +88,24 @@ itemRouter.route("/:itemId/favorites/")
             }
         })
     })
-	.put(function (req, res) {
-       Item.findByIdAndUpdate(req.params.itemId, {$pull: {"favoritedBy": req.user._id}}, function (err, item) {
-           if(err) return res.status(500).send(err);
-           if(!item) return res.status(404).send("Item not found.");
-           else {
+    .put(function (req, res) {
+        Item.findByIdAndUpdate(req.params.itemId, {$pull: {"favoritedBy": req.user._id}}, function (err, item) {
+            if (err) return res.status(500).send(err);
+            if (!item) return res.status(404).send("Item not found.");
+            else {
 
-               res.send(item);
-           }
-       })
-   })
-	.delete(function (req, res) {
+                res.send(item);
+            }
+        })
+    })
+    .delete(function (req, res) {
         Item.findByIdAndRemove(req.params.itemId, function (err, item) {
             if (err) return res.status(500).send(err);
             res.send(item);
         })
     })
-	
-	;
+
+;
 
 
 module.exports = itemRouter;

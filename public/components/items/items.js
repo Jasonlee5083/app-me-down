@@ -1,13 +1,13 @@
 var app = angular.module("appMeDown");
 
-app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemService", "mapService", "userService", "UserService", function ($scope, $log, $http, $uibModal, itemService, mapService, userService, UserService) {
+app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemService", "mapService", "userService", "AuthService", function ($scope, $log, $http, $uibModal, itemService, mapService, userService, AuthService) {
 
     $scope.favoriteItems = [];
     $scope.searchedItems = [];
     $scope.selectedItem = [];
     $scope.user = [];
     $scope.items = [];
-    $scope.UserService = UserService;
+    $scope.AuthService = AuthService;
 
     $scope.viewItem = function (selectedItem) {
         // console.log("modal")
@@ -34,12 +34,6 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
             })
     };
 
-    $scope.favorite = function (item) {
-        itemService.postFavorite(item).then(function (response) {
-
-        })
-
-    };
 
     itemService.getItems().then(function (items) {
         items.forEach(function (item) {
@@ -81,9 +75,9 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
         });
     };
 
-    $scope.save = function (newItem) {
-        itemService.saveItems(newItem);
-    };
+    // $scope.save = function (newItem) {
+    //     itemService.saveItems(newItem);
+    // };
     $scope.showForm = function () {
         var modalInstance = $uibModal.open({
             templateUrl: "add-item-modal.html",
@@ -98,6 +92,7 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
 
         modalInstance.result
             .then(function (data) {
+                console.log(data)
                 return itemService.postItems(data)
             })
             .then(function (newItem) {
@@ -129,10 +124,11 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
             })
     };
 
+    $scope.favorite = function (item) {
+        itemService.postFavorite(item).then(function (response) {
 
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').focus()
-    })
+        })
 
+    };
 
 }]);
