@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use("/api", expressJwt({secret: config.secret}).unless({path: [{url: '/api/items', method: "GET"}]}));
+app.use("/api", expressJwt({secret: config.secret}).unless({path: [{url: '/api/items', methods: ["GET"]}]}));
 app.use("/api/items", require("./routes/item-routes"));
 app.use("/api/users", require("./routes/user-routes"));
 

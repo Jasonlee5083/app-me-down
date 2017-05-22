@@ -43,7 +43,20 @@ app.controller("itemModalInstanceController", ["$scope", "$timeout", "$uibModalI
 	}
 }]);
 
-
+// *Placeholder item for testing
+//
+// $scope.newItem = {
+//     type: "Book",
+//     ageRange: "1-3 years",
+//     title: "Thing",
+//     price: 200,
+//     description: "Placeholder thing",
+//     condition: "Like New",
+//     place: {
+//         name: "Provo"
+//     },
+//     email: "place@holder.com"
+// };
 
 
 

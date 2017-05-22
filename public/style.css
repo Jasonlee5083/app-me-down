@@ -21,7 +21,7 @@
 }
 
 .cards {
-    height: 500px;
+    height: 525px;
 }
 
 .profile {
@@ -34,6 +34,8 @@
     height: 800px;
     border-radius: 10px;
 }
+
+
 
 .profile-avatar {
     display: block;
@@ -72,7 +74,7 @@
     border-radius: 4px;
     box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 2px 1px #d4d4d5;
     width: 100%;
-    max-height: 600px;
+    max-height: 500px;
     min-width: 200px;
     background-color: #F1FFE1;
 }
@@ -140,9 +142,10 @@ h1 {
     background: #F1FFE1;
 }
 
-.profile-pic {
+.profilePic {
     border-radius: 5px;
     padding: 5px;
+    align-content: center;
 }
 
 .username {

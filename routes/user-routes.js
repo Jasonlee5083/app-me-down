@@ -9,7 +9,7 @@ userRoutes.route("/")
 
         User.findById(req.user._id)
 
-            .populate("username")
+            .populate("user")
             .exec(function (err, user) {
                 if (err) return res.status(500).send(err);
 
