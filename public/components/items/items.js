@@ -65,6 +65,7 @@ app.controller("itemController", ["$scope", "$log", "$http", "$uibModal", "itemS
             }
         });
         $scope.items = items;
+	console.log($scope.items);
     });
 
 

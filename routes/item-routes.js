@@ -77,6 +77,26 @@ itemRouter.route("/:itemId")
             res.send(item);
         })
     });
+//itemRouter.route("/:itemId/items/")
+//    .post(function (req, res) {
+//        Item.findByIdAndUpdate(req.params.itemId, {$addToSet: {"user": req.user._id}}, {new: true}, function (err, item) {
+//            if (err) return res.status(500).send(err);
+//            if (!item) return res.status(404).send("Item not found.");
+//            else {
+//                res.send(item);
+//            }
+//        })
+//    })
+//	.put(function (req, res) {
+//       Item.findByIdAndUpdate(req.params.itemId, {$pull: {"user": req.user._id}}, function (err, item) {
+//           if(err) return res.status(500).send(err);
+//           if(!item) return res.status(404).send("Item not found.");
+//           else {
+//
+//               res.send(item);
+//           }
+//       })
+//   })
 
 itemRouter.route("/:itemId/favorites/")
     .post(function (req, res) {

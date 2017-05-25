@@ -38,6 +38,7 @@ app.service("TokenService", ["$localStorage", function ($localStorage) {
 }]);
 
 app.service("UserService", ["$http", "$location", "TokenService", "$localStorage", function ($http, $location, TokenService, $localStorage) {
+	var self = this;
     this.currentUser = $localStorage.user || {};
 
     this.signup = function (user) {
@@ -48,6 +49,7 @@ app.service("UserService", ["$http", "$location", "TokenService", "$localStorage
         return $http.post("/auth/login", user).then(function (response) {
             TokenService.setToken(response.data.token);
             $localStorage.user = response.data.user;
+			self.currentUser = response.data.user;
             return response;
         });
     };
