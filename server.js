@@ -9,7 +9,7 @@ var expressJwt = require("express-jwt");
 var nodemailer = require("nodemailer");
 var sgTransport = require("nodemailer-sendgrid-transport");
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 2000;
 
 app.use(morgan("dev"));
 
